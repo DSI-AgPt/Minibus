@@ -213,7 +213,7 @@ DefaultProcessControl.prototype.forceProcessExecutionStop = function() {
 		that.$container.enableControlBox(that.$wrapper, true);
 		that.refresh(data);
 	}).error(
-			// TODO factoriser
+			// TODO factorize
 			function(data) {
 				switch (data.status) {
 				case 400:
@@ -304,7 +304,7 @@ DefaultProcessControl.prototype.askExecution = function($mode) {
 							break;
 
 						default:
-							// TODO gérer les autres erreurs
+							// TODO handle other errors
 							break;
 						}
 						that.$container.enableControlBox(that.$wrapper, true);
@@ -316,7 +316,7 @@ DefaultProcessControl.prototype.refresh = function(data) {
 	var $form = that.$wrapper.find('form');
 	$form.find('input.active-control').check(data.active);
 	$form.find('input[name=shedule][type=checkbox]').check(data.shedule);
-	// éviter les boucles de mise à jour
+	// avoid update infinite loop
 	that.disableDataSend = true;
 	$form.find(".frequency-control").cron("value", data.cron);
 	that.refreshActivationControlsState();

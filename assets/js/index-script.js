@@ -76,7 +76,7 @@ Index.prototype.saveSelectedDataType = function(type) {
 };
 
 /**
- * Gestion des alertes avec freeow
+ * Freeow alerts handling
  */
 Index.prototype.AlertTypes = {
 	OK : [ "simple", "ok" ],

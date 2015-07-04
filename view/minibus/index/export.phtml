@@ -1,0 +1,56 @@
+<div class="ui-layout-center">
+<?php
+foreach ( $this->dataTypes as $key1 => $data ) :
+	?>
+	<div class="process" id="export-<?php echo $this->escapeHtml($key1) ?>"
+		class="ui-helper-hidden">
+		<!-- 		Titre de la boîte process -->
+		<h2>
+		<?php echo $this->translate("Data export")?> : <?php echo $this->escapeHtml($data ['label']) ?> </h2>
+
+		<!-- 		Menu des années -->
+		<?php
+	if ($data ['annualize'] === true) {
+		echo $this->selectAcademicYear ( $key1, $this->translate ( "Academic year" ), $this->firstYear, $this->lastYear );
+	}
+	
+	// Affichage des boîtes de contrôle
+	foreach ( $data ['configuration'] ['cibles'] as $key2 => $source ) :
+		$control = $source ['control'];
+		$this->form->setData ( array (
+				"type" => $key1,
+				"source" => $key2 
+		) );
+		echo '<input type="hidden" class="control-script-name" value="' . ucfirst ( $source ['control'] ) . '"/>';
+		echo $this->$control ( $key1, $key2, $source, $this->form, $this->form );
+		?>
+	<?php endforeach;?>
+	</div>
+<?php endforeach;?>
+<!-- Liste de scripts -->
+<?php
+
+echo $this->controlScriptNamesHelper ( $this->dataTypes );
+?>
+<?php
+
+if (isset ( $this->openProcess )) :
+	?>
+<input type="hidden" id="open-process"
+		value="<?php echo $this->openProcess;?>">
+
+
+
+<?php 
+endif;
+if (isset ( $this->selectExecution )) :
+	?>
+<input type="hidden" id="select-execution"
+		value="<?php echo $this->selectExecution;?>">
+
+
+
+<?php 
+endif;
+?>
+</div>

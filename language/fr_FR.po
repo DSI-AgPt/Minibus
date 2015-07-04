@@ -1,0 +1,423 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MDM1.0\n"
+"POT-Creation-Date: 2015-04-17 06:19+0100\n"
+"PO-Revision-Date: 2015-04-17 06:21+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ../view\n"
+"X-Poedit-SearchPath-1: ../../../vendor/zf-commons/zfc-user\n"
+"X-Poedit-SearchPath-2: ../../../vendor/nitecon/zfcuser-ldap/src\n"
+
+#: ../view/helpers/partials/cdmfile-acquisition-control.phtml:21
+#: ../view/helpers/partials/default-process-control.phtml:15
+msgid "Source"
+msgstr "Source"
+
+#: ../view/helpers/partials/cdmfile-acquisition-control.phtml:37
+msgid "No mention loaded for academic year"
+msgstr "Aucune mention chargée pour l'année scolaire"
+
+#: ../view/helpers/partials/cdmfile-acquisition-control.phtml:58
+msgid "Load CdmFr file"
+msgstr "Charger le fichier Cdm-fr"
+
+#: ../view/helpers/partials/cdmfile-acquisition-control.phtml:60
+#: ../view/helpers/partials/default-process-control.phtml:47
+msgid "Synchronization"
+msgstr "Synchroniser"
+
+#: ../view/helpers/partials/default-process-control.phtml:17
+msgid "Target"
+msgstr "Cible"
+
+#: ../view/helpers/partials/default-process-control.phtml:29
+msgid "Activate"
+msgstr "Activer"
+
+#: ../view/helpers/partials/default-process-control.phtml:35
+msgid "Schedule"
+msgstr "Planifier"
+
+#: ../view/helpers/partials/default-process-control.phtml:48
+#: ../view/helpers/partials/default-process-control.phtml:58
+msgid "Control"
+msgstr "Contrôle"
+
+#: ../view/helpers/partials/default-process-control.phtml:49
+#: ../view/helpers/partials/default-process-control.phtml:59
+msgid "Force stop"
+msgstr "Arrêt d'urgence"
+
+#: ../view/helpers/partials/default-process-control.phtml:56
+msgid "Differential synchronization"
+msgstr "Synchronisation différentielle"
+
+#: ../view/helpers/partials/default-process-control.phtml:57
+msgid "Resynchronization"
+msgstr "Resynchronization"
+
+#: ../view/helpers/partials/execution-list.phtml:4
+msgid "Execution list"
+msgstr "Liste des exécutions précédentes"
+
+#: ../view/helpers/partials/execution-list.phtml:8
+msgid "Identifier"
+msgstr "Identifiiant"
+
+#: ../view/helpers/partials/execution-list.phtml:9
+msgid "State"
+msgstr "État courant"
+
+#: ../view/helpers/partials/execution-list.phtml:10
+msgid "Information"
+msgstr "Information"
+
+#: ../view/helpers/partials/execution-list.phtml:11
+msgid "Log file"
+msgstr "Fichier de log"
+
+#: ../view/helpers/partials/execution-list.phtml:12
+msgid "Start Date"
+msgstr "Date/heure de démarrage"
+
+#: ../view/helpers/partials/execution-list.phtml:13
+msgid "Actions"
+msgstr "Actions"
+
+#: ../view/helpers/partials/execution-list.phtml:18
+msgid "No execution saved."
+msgstr "Aucune exécution enregistrée"
+
+#: ../view/helpers/partials/running-icon.phtml:2
+#: ../view/helpers/partials/running-icon.phtml:3
+msgid "Running"
+msgstr "En cours"
+
+#: ../view/zfc-user/user/login.phtml:4
+msgid "Login"
+msgstr "Identifiez-vous"
+
+#: ../view/zfc-user/user/login.phtml:21
+#: ../view/application/index/poedit.phtml:2
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:6
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: ../view/zfc-user/user/login.phtml:28
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:11
+msgid "Password"
+msgstr "Mot de Passe"
+
+#: ../view/zfc-user/user/index.phtml:2
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/index.phtml:2
+msgid "Hello"
+msgstr ""
+
+#: ../view/zfc-user/user/index.phtml:3
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/index.phtml:3
+msgid "Sign Out"
+msgstr ""
+
+#: ../view/zfc-user/user/changeemail.phtml:1
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/changeemail.phtml:1
+#, php-format
+msgid "Change Email for %s"
+msgstr ""
+
+#: ../view/zfc-user/user/changeemail.phtml:3
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/changeemail.phtml:3
+msgid "Email address changed successfully."
+msgstr ""
+
+#: ../view/zfc-user/user/changeemail.phtml:5
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/changeemail.phtml:5
+msgid "Unable to update your email address. Please try again."
+msgstr ""
+
+#: ../view/zfc-user/user/changepassword.phtml:1
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/changepassword.phtml:1
+#, php-format
+msgid "Change Password for %s"
+msgstr ""
+
+#: ../view/zfc-user/user/changepassword.phtml:3
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/changepassword.phtml:3
+msgid "Password changed successfully."
+msgstr ""
+
+#: ../view/zfc-user/user/changepassword.phtml:5
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/changepassword.phtml:5
+msgid "Unable to update your password. Please try again."
+msgstr ""
+
+#: ../view/error/404.phtml:1
+msgid "A 404 error occurred"
+msgstr ""
+
+#: ../view/error/404.phtml:10
+msgid "The requested controller was unable to dispatch the request."
+msgstr ""
+
+#: ../view/error/404.phtml:13
+msgid ""
+"The requested controller could not be mapped to an existing controller class."
+msgstr ""
+
+#: ../view/error/404.phtml:16
+msgid "The requested controller was not dispatchable."
+msgstr ""
+
+#: ../view/error/404.phtml:19
+msgid "The requested URL could not be matched by routing."
+msgstr ""
+
+#: ../view/error/404.phtml:22
+msgid "We cannot determine at this time why a 404 was generated."
+msgstr ""
+
+#: ../view/error/404.phtml:34
+msgid "Controller"
+msgstr ""
+
+#: ../view/error/404.phtml:41
+#, php-format
+msgid "resolves to %s"
+msgstr ""
+
+#: ../view/error/404.phtml:53 ../view/error/index.phtml:8
+msgid "Additional information"
+msgstr ""
+
+#: ../view/error/404.phtml:56 ../view/error/404.phtml:80
+#: ../view/error/index.phtml:11 ../view/error/index.phtml:35
+msgid "File"
+msgstr ""
+
+#: ../view/error/404.phtml:60 ../view/error/404.phtml:84
+#: ../view/error/index.phtml:15 ../view/error/index.phtml:39
+msgid "Message"
+msgstr ""
+
+#: ../view/error/404.phtml:64 ../view/error/404.phtml:88
+#: ../view/error/index.phtml:19 ../view/error/index.phtml:43
+msgid "Stack trace"
+msgstr ""
+
+#: ../view/error/404.phtml:74 ../view/error/index.phtml:29
+msgid "Previous exceptions"
+msgstr ""
+
+#: ../view/error/404.phtml:103 ../view/error/index.phtml:58
+msgid "No Exception available"
+msgstr ""
+
+#: ../view/error/index.phtml:1
+msgid "An error occurred"
+msgstr ""
+
+#: ../view/application/index/configuration.phtml:5
+msgid "Académic year start/end"
+msgstr "Année scolaire début/fin"
+
+#: ../view/application/index/configuration.phtml:11
+msgid "First year"
+msgstr "Première année"
+
+#: ../view/application/index/configuration.phtml:15
+msgid "Last year"
+msgstr "Dernière année"
+
+#: ../view/application/index/configuration.phtml:21
+msgid "Save"
+msgstr "Enregistrer"
+
+#: ../view/application/index/configuration.phtml:25
+msgid "Launch executor"
+msgstr "Lancer un exécuteur"
+
+#: ../view/application/index/configuration.phtml:28
+msgid "Launch"
+msgstr "Lancer"
+
+#: ../view/application/index/configuration.phtml:29
+msgid "Verbose mode"
+msgstr "Mode verbeux"
+
+#: ../view/application/index/alerts.phtml:3
+msgid "Processus"
+msgstr ""
+
+#: ../view/application/index/alerts.phtml:6
+msgid "Exports to"
+msgstr "Exports vers"
+
+#: ../view/application/index/alerts.phtml:10
+msgid "Imports from"
+msgstr "Imports depuis"
+
+#: ../view/application/index/alerts.phtml:14
+msgid "Levels "
+msgstr "Niveaux"
+
+#: ../view/application/index/alerts.phtml:16
+msgid "Warn"
+msgstr "Avertissements"
+
+#: ../view/application/index/alerts.phtml:17
+msgid "Error"
+msgstr "Erreurs"
+
+#: ../view/application/index/alerts.phtml:18
+#, fuzzy
+msgid "Alert"
+msgstr "Alertes"
+
+#: ../view/application/index/alerts.phtml:21
+msgid "All process"
+msgstr "Tous les processus"
+
+#: ../view/application/index/alerts.phtml:23
+#: ../view/application/index/alerts.phtml:25
+msgid "No process"
+msgstr "Aucun processus"
+
+#: ../view/application/index/alerts.phtml:27
+msgid "# process"
+msgstr "# processus"
+
+#: ../view/application/index/alerts.phtml:29
+msgid "All levels"
+msgstr "Tous les niveaux"
+
+#: ../view/application/index/alerts.phtml:31
+#: ../view/application/index/alerts.phtml:33
+msgid "No level"
+msgstr "Aucun niveau"
+
+#: ../view/application/index/browse.phtml:7
+msgid "Consultation des données"
+msgstr ""
+
+#: ../view/application/index/browse.phtml:10
+#: ../view/application/index/acquisition.phtml:11
+#: ../view/application/index/export.phtml:14
+msgid "Academic year"
+msgstr "Année scolaire"
+
+#: ../view/application/index/acquisition.phtml:8
+msgid "Data import"
+msgstr "Import des données"
+
+#: ../view/application/index/export.phtml:9
+msgid "Data export"
+msgstr "Export des données"
+
+#: ../view/layout/layout.phtml:12 ../view/layout/layout.phtml:48
+msgid "Data exchange plateform"
+msgstr "Plateforme d'échange de données"
+
+#: ../view/layout/layout.phtml:53
+msgid "Browse"
+msgstr "Consultation"
+
+#: ../view/layout/layout.phtml:54
+msgid "Acquisition"
+msgstr "Acquisition"
+
+#: ../view/layout/layout.phtml:55
+msgid "Export"
+msgstr "Export"
+
+#: ../view/layout/layout.phtml:56
+msgid "Alerts"
+msgstr "Alertes"
+
+#: ../view/layout/layout.phtml:57
+msgid "Configuration"
+msgstr "Configuration"
+
+#: ../view/layout/layout.phtml:86
+msgid "Complete logfile"
+msgstr "Fichier de log complet"
+
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/login.phtml:1
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:18
+msgid "Sign In"
+msgstr "Connexion"
+
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/login.phtml:31
+msgid "Not registered?"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/login.phtml:31
+msgid "Sign up!"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/view/zfc-user/user/register.phtml:1
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:19
+msgid "Register"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:7
+msgid "Email"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:8
+msgid "New Email"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:9
+msgid "Verify New Email"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:10
+msgid "Display Name"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:12
+msgid "Password Verify"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:13
+msgid "Current Password"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:14
+msgid "Verify New Password"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:15
+msgid "New Password"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:16
+msgid "Please type the following text"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:17
+msgid "Submit"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:20
+msgid "No record matching the input was found"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:21
+msgid "A record matching the input was found"
+msgstr ""
+
+#: ../../../vendor/zf-commons/zfc-user/src/ZfcUser/language/msgIds.php:22
+msgid "Authentication failed. Please try again."
+msgstr ""
+
+#~ msgid "Shared data management"
+#~ msgstr "Gestion des données partagées"

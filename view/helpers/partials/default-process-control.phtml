@@ -1,0 +1,95 @@
+<?php
+$defaultDisplayButton = array(
+    'synchronize' => true,
+    'resync' => true,
+    'control' => true,
+    'stop' => true
+);
+$displayButton = array_key_exists('display_button', $this->options) ? $this->options['display_button'] : array();
+array_merge($defaultDisplayButton, $displayButton);
+$displayButton = $displayButton + $defaultDisplayButton;
+?>
+<div
+	id="process-control-<?php echo $this->escapeHtml($this->keyData) ?>-<?php echo $this->escapeHtml($this->keyEndPoint) ?>"
+	class="ui-widget-content process-control <?php echo $this->class;?>  control-box">
+	
+<?php
+
+echo $this->form()->openTag();
+
+?>
+	<h3 class=""><?php echo $this->partial("helpers/partials/running-icon");?>
+		<img alt=""
+			src="img/logos/<?php echo $this->escapeHtml($this->keyEndPoint) ?>.png" />
+		<?php
+if ($this->form->get('mode')->getValue() == 'acquisition')
+    echo $this->translate('Source');
+else
+    echo $this->translate('Target');
+?> :
+		<?php echo $this->escapeHtml($this->label)?>
+	</h3>
+	<!-- 	-------------------------------------------- -->
+	<!-- 	Données du formulaire				 -->
+	<?php
+echo $this->formHidden($this->form->get('type')
+    ->setValue($this->keyData));
+echo $this->formHidden($this->form->get('endpoint')
+    ->setValue($this->keyEndPoint));
+echo $this->formHidden($this->form->get('cron'));
+echo $this->formHidden($this->form->get('mode'));
+echo $this->formHidden($this->form->get('active'));
+?><label> <input type="checkbox" class="active-control" /> <?php echo $this->translate('Activate')?></label>
+	<!-- 	-------------------------------------------- -->
+	<!-- 		Contrôles de planification 				-->
+		<?php
+echo $this->formCheckbox($this->form->get('shedule'));
+?>
+		<label for="cron-activation-control"><?php echo $this->translate("Schedule") ?></label>
+	<div class="frequency-control"></div>
+
+	<div>
+
+
+		<!-- 	-------------------------------------------- -->
+		<!-- 	Boutons du mode acquisition				 -->
+	<?php
+
+if ($this->form->get('mode')->getValue() == 'acquisition') :
+    ?>
+		<?php if ($displayButton['synchronize']===true): ?>
+		<span class="bouton-synchronisation"><?php echo $this->translate("Synchronization") ?></span>
+		<?php endif; ?>
+		<?php if ($displayButton['control']===true): ?>
+		<span class="bouton-controle"><?php echo $this->translate("Control") ?></span><?php endif; ?>
+		<?php if ($displayButton['stop']===true): ?><span
+			class="bouton-force-execution-stop"><?php echo $this->translate("Force stop") ?></span>
+			<?php endif; ?>
+	<?php endif; ?>
+	
+	
+		<!-- 	-------------------------------------------- -->
+		<!-- 	Boutons du mode export  					-->
+	<?php if ($this->form->get ( 'mode' )->getValue() == 'export'): ?>
+		<?php if ($displayButton['synchronize']===true): ?>
+		<span class="bouton-synchronisation"><?php echo $this->translate("Differential synchronization") ?></span>
+		<?php endif; ?>
+		<?php if ($displayButton['resync']===true): ?>
+			<span class="bouton-resynchronisation"><?php echo $this->translate("Resynchronization") ?></span>
+		<?php endif; ?>
+		<?php if ($displayButton['control']===true): ?>
+			<span class="bouton-controle"><?php echo $this->translate("Control") ?></span><?php endif; ?>
+		<?php if ($displayButton['stop']===true): ?><span
+			class="bouton-force-execution-stop"><?php echo $this->translate("Force stop") ?></span>
+		<?php endif; ?>
+	<?php endif; ?>
+	
+	
+		
+	</div>
+	<?php
+echo $this->form()->closeTag();
+?>
+	<?php echo $this->partial("helpers/partials/execution-list");?>
+</div>
+

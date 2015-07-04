@@ -1,0 +1,13 @@
+<div id="browse-control-<?php echo $this->escapeHtml($this->keyData) ?>"
+	class="ui-widget-content browse-control <?php echo $this->class;?>">
+	<table>
+		<thead>
+			<tr>
+<?php foreach ($this->columns as $key=>$label):?>
+<th data-key-name="<?php echo $key?>"><?php echo $label ?></th>
+<?php endforeach;?>
+</tr>
+		</thead>
+	</table>
+</div>
+

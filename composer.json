@@ -1,0 +1,43 @@
+{
+    "name": "dsi-agpt/minibus",
+    "description": "Zend based minimalist data bus",
+    "type": "library",
+    "license" : "GPL-2.0",
+    "keywords": [
+        "bus",
+        "zf2"
+    ],
+    "version":"0.0.1",
+    "authors": [
+                {
+                    "name": "Joachim Dornbusch",
+                    "email": "joachim.dornbusch@agroparistech.fr"
+                }
+            ],
+    "extra": {
+          "branch-alias": {
+                    "dev-master": "0.0.1-dev"
+          }
+    },       
+    "require": {
+        "php": ">=5.5",
+        "zendframework/zendframework": "2.3.*",
+        "nitecon/zfcuser-ldap":"^1.1",
+        "symfony/yaml": "^2.7",
+        "doctrine/doctrine-orm-module": "^0.9.1",
+        "sp/jms-serializer-module": "dev-master",
+        "mtdowling/cron-expression": "^1.0"
+    },
+    "require-dev": {
+    	  "phpunit/phpunit": "4.4.*"
+    		    
+    },
+    "autoload": {
+         "psr-0": {
+             "Minibus": "src/"
+         },
+         "classmap": [
+             "./Module.php"
+         ]
+    }
+}

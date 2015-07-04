@@ -1,0 +1,37 @@
+<?php
+/**
+ * Local Configuration Override
+ *
+ * This configuration override file is for overriding environment-specific and
+ * security-sensitive configuration information. Copy this file without the
+ * .dist extension at the end and populate values as needed.
+ *
+ * @NOTE: This file is ignored from Git by default with the .gitignore included
+ * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
+ * credentials from accidentally being committed into version control.
+ */
+return array (
+		'doctrine' => array (
+				'connection' => array (
+						'orm_default' => array (
+								'params' => array (
+										'host' => '%HOST_MDM%',
+										'port' => '%PORT_MDM%',
+										'user' => '%USER_MDM%',
+										'password' => '%PASSWORD_MDM%',
+										'dbname' => '%DBNAME_MDM%',
+										'driver' => 'pdo_mysql' 
+								) 
+						) 
+				) 
+		) ,
+		'pgp' => array (
+				'passphrase' => '%PASSPHRASE_PGP_PCL%' 
+		),
+		'data-store-directory' => '%DATA_DIRECTORY%' ,
+		'process-log-directory' => '%LOGS_DIRECTORY%' ,
+		'number-of-executions-to-keep' => 5,
+		'auth' => array (
+				'filePath' => __DIR__ . "/users.txt" 
+		),
+);

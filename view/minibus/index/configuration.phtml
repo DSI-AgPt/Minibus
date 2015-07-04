@@ -1,0 +1,35 @@
+<?php
+?>
+<div class="ui-layout-center">
+	<div class="configuration-block ui-widget-content">
+		<h2><?php echo $this->translate('Académic year start/end');?></h2>
+		<div class="container-choix-annees">
+			<?php
+echo $this->form()->openTag($this->form);
+$formLabel = $this->plugin('formLabel');
+$firstYear = $this->form->get('first_year');
+echo $formLabel->openTag() . $this->translate('First year');
+echo $this->formInput($firstYear);
+echo $formLabel->closeTag();
+$lastYear = $this->form->get('last_year');
+echo $formLabel->openTag() . $this->translate('Last year');
+echo $this->formInput($lastYear);
+echo $formLabel->closeTag();
+echo $this->form()->closeTag($this->form);
+?>
+				
+				<span id="save-button" class="save-button"><?php echo $this->translate ( 'Save' );?></span>
+		</div>
+	</div>
+	<div class="configuration-block ui-widget-content">
+		<h2><?php echo $this->translate('Launch executor');?></h2>
+		<div class="launch-executor-container">
+
+			<span id="launch-executor-button" class="launch-executor-button"><?php echo $this->translate ( 'Launch' );?></span>
+			<label> <input type="checkbox" class="verbose-mode" checked="checked" /> <?php echo $this->translate('Verbose mode')?></label>
+		</div>
+	</div>
+
+
+</div>
+</div>

@@ -1,0 +1,44 @@
+<div class="ui-layout-center">
+	<label for="alerts-structure" class="ui-state-highlight">
+<?php echo $this->translate("Processus")." : ";?></label> <select
+		multiple="multiple" id="alerts-structure" name="alerts-structure">
+		<optgroup id="alerts-structure-exports"
+			label="<?php echo $this->translate("Exports to"); ?>">
+
+		</optgroup>
+		<optgroup id="alerts-structure-imports"
+			label="<?php echo $this->translate("Imports from"); ?>">
+
+		</optgroup>
+	</select> <label for="alerts-levels" class="ui-state-highlight">
+<?php echo $this->translate("Levels ")." : ";?></label><select
+		multiple="multiple" id="alerts-levels" name="alerts-levels">
+		<option value="<?php echo \Zend\Log\Logger::WARN?>"><?php echo $this->translate("Warn"); ?></option>
+		<option value="<?php echo \Zend\Log\Logger::ERR?>"><?php echo $this->translate("Error"); ?></option>
+		<option value="<?php echo \Zend\Log\Logger::ALERT?>"><?php echo $this->translate("Alerts"); ?></option>
+
+	</select> <input id="checkAllTextSelectProcess" type="hidden"
+		class="i18n" value="<?php echo $this->translate('All process'); ?>" />
+	<span class="nb-alerts ui-helper-hidden ui-state-highlight">Chargement...</span>
+	<span class="delete-alerts" class="ui-helper-hidden"></span> <label
+		class="select-all-container"> <input type="checkbox"
+		class="select-all-alerts" class="ui-helper-hidden" />
+	</label> <input id="uncheckAllTextSelectProcess" type="hidden"
+		class="i18n" value="<?php echo $this->translate('No process'); ?>" />
+	<span class="running-icon" id="alert-list-preloader"> <img
+		alt="<?php echo $this->translate('Running')?>"
+		title="<?php echo $this->translate('Running')?>"
+		src=" <?php echo $this->basePath()?>/img/preload.GIF" />
+	</span> <input id="noneSelectedTextSelectProcess" type="hidden"
+		class="i18n" value="<?php echo $this->translate('No process'); ?>" /><input
+		id="selectedTextSelectProcess" type="hidden" class="i18n"
+		value="<?php echo $this->translate('# process'); ?>" /> <input
+		id="checkAllTextSelectLevels" type="hidden" class="i18n"
+		value="<?php echo $this->translate('All levels'); ?>" /> <input
+		id="uncheckAllTextSelectLevels" type="hidden" class="i18n"
+		value="<?php echo $this->translate('No level'); ?>" /> <input
+		id="noneSelectedTextSelectLevels" type="hidden" class="i18n"
+		value="<?php echo $this->translate('No level'); ?>" />
+
+	<div id="alert-list-container"></div>
+</div>

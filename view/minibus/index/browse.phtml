@@ -1,0 +1,26 @@
+<div class="ui-layout-center">
+<?php
+foreach ( $this->dataTypes as $key1 => $data ) :
+	?>
+	<div class="process" id="browse-<?php echo $this->escapeHtml($key1) ?>"
+		class="ui-helper-hidden">
+		<h2><?php echo $this->translate("Consultation des données")?> : <?php echo $this->escapeHtml($data ['label']) ?> </h2>
+		<?php
+	if ($data ['annualize'] === true) {
+		echo $this->selectAcademicYear ( $key1, $this->translate ( "Academic year" ), $this->firstYear, $this->lastYear );
+	}
+	$browseConfiguration = $data ['configuration'] ['browse'] ['general'];
+	$control = $browseConfiguration ['control'];
+	echo '<input type="hidden" class="control-script-name" value="' . ucfirst ( $control ) . '"/>';
+	if (array_key_exists ( 'url', $browseConfiguration ))
+		echo '<input type="hidden" class="control-script-url" value="' . $browseConfiguration ['url'] . '"/>';
+	echo $this->$control ( $key1, $browseConfiguration );
+	
+	?>
+	</div>
+<?php
+endforeach
+;
+echo $this->controlScriptNamesHelper ( $this->dataTypes, true );
+?>
+</div>

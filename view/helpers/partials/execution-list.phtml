@@ -1,0 +1,22 @@
+<details data-type="<?php echo $this->escapeHtml($this->keyData) ?>"
+	data-endpoint="<?php echo $this->escapeHtml($this->keyEndPoint)?>">
+	<summary><?php echo $this->translate("Execution list");?></summary>
+	<table>
+		<thead>
+			<tr>
+				<th><?php echo $this->translate("Identifier")?></th>
+				<th><?php echo $this->translate("State")?></th>
+				<th><?php echo $this->translate("Information")?></th>
+				<th><?php echo $this->translate("Log file")?></th>
+				<th><?php echo $this->translate("Start Date")?></th>
+				<th><?php echo $this->translate("Actions")?></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="empty-line" class="ui-state-active">
+				<td colspan="4"><?php echo $this->translate("No execution saved.")?>
+				 <span class="current-year-empty-line"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</details>

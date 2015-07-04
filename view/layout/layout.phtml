@@ -1,0 +1,162 @@
+<?php
+if (! isset($this->action)) {
+    $this->action = 'login';
+    $this->controller = 'user';
+}
+?>
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+        <?php echo $this->headTitle($this->translate('Data exchange plateform'))->setSeparator(' - ')->setAutoEscape(false)?>
+
+        <?php
+        
+        echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')?>
+
+        <!-- styles -->
+        <?php
+        // TODO refacto
+        echo $this->headLink(array(
+            'rel' => 'shortcut icon',
+            'type' => 'image/vnd.microsoft.icon',
+            'href' => $this->basePath() . '/img/favicon.ico'
+        ))
+            ->prependStylesheet($this->basePath() . '/css/style.css')
+            ->prependStylesheet($this->basePath() . '/js/cron/jquery-cron.css')
+            ->prependStylesheet($this->basePath() . '/js/gentleSelect/jquery-gentleSelect.css')
+            ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/css/jquery.dataTables.css')
+            ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/integration/dataTables.jqueryui.css')
+            ->prependStylesheet($this->basePath() . '/jstree/dist/themes/default/style.min.css')
+            ->prependStylesheet($this->basePath() . '/js/multiselect/jquery.multiselect.css')
+            ->prependStylesheet($this->basePath() . '/freeow/style/freeow/freeow.css')
+            ->prependStylesheet($this->basePath() . '/jquery-file-upload/css/jquery.fileupload.css')
+            ->prependStylesheet($this->basePath() . '/css/layout-default-latest.css')
+            ->prependStylesheet($this->basePath() . '/jquery-ui-1.11.2.custom/jquery-ui.css');
+        ?>
+
+        <!-- scripts -->
+        <?php
+        
+        echo $this->headScript()
+            ->prependFile($this->basePath() . '/js/index-script.js')
+            ->prependFile($this->basePath() . '/js/index-io-script.js')
+            ->prependFile($this->basePath() . '/js/controls/log-displayer.js')
+            ->prependFile($this->basePath() . '/js/controls/execution-list.js')
+            ->prependFile($this->basePath() . '/js/' . $this->controller . '-' . $this->action . '-script.js')
+            ->prependFile($this->basePath() . '/js/DataTables-1.10.6/integration/dataTables.jqueryui.js')
+            ->prependFile($this->basePath() . '/js/DataTables-1.10.6/js/jquery.dataTables.js')
+            ->prependFile($this->basePath() . '/js/jquery.checkbox.js')
+            ->prependFile($this->basePath() . '/jstree/dist/jstree.min.js')
+            ->prependFile($this->basePath() . '/jquery-file-upload/js/jquery.fileupload.js')
+            ->prependFile($this->basePath() . '/js/multiselect/jquery.multiselect.js')
+            ->prependFile($this->basePath() . '/freeow/jquery.freeow.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.layout-latest.js')
+            ->prependFile($this->basePath() . '/js/details/jquery.details.js')
+            ->prependFile($this->basePath() . '/jquery-ui-1.11.2.custom/jquery-ui.min.js')
+            ->prependFile($this->basePath() . '/js/jquery.cookie.js')
+            ->prependFile($this->basePath() . '/js/cron/jquery-cron.js')
+            ->prependFile($this->basePath() . '/js/gentleSelect/jquery-gentleSelect.js')
+            ->prependFile($this->basePath() . '/js/jquery.min.js')
+            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array(
+            'conditional' => 'lt IE 9'
+        ))
+            ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array(
+            'conditional' => 'lt IE 9'
+        ));
+        $this->inlineScript()->appendFile($this->basePath() . '/js/script.js');
+        ?>
+
+    </head>
+<body class="ui-helper-hidden">
+	<input type="hidden" id="action-name"
+		value="<?php echo $this->action; ?>" />
+	<input type="hidden" id="controller-name"
+		value="<?php echo $this->controller; ?>" />
+	<div class="ui-layout-north">
+		<nav id="main-menu">
+			<ul>
+				<li class="title title-text"><?php echo $this->translate("Data exchange plateform") ?></li>
+				<li class="title"><img alt="AgroParisTech"
+					src="<?php echo $this->basePath()?>/img/agpt-logo.png"></li>
+					<?php
+    $tabs = array(
+        'browse' => $this->translate('Browse'),
+        'acquisition' => $this->translate('Acquisition'),
+        'export' => $this->translate('Export'),
+        'alerts' => $this->translate('Alerts'),
+        'configuration' => $this->translate('Configuration')
+    );
+    foreach ($tabs as $routeName => $label) :
+        ?>
+					<?php if(isset($this->authService) && $this->authService->checkAutorisation($this->userName,$routeName)) :?>
+				<li><a href="<?php echo "#".$routeName ?>"><?php echo $label ?></a></li>
+				<?php endif;?>
+				<?php endforeach; ?>
+
+
+			</ul>
+<?php
+foreach ($tabs as $routeName => $label) :
+    ?>
+					<?php if(isset($this->authService) &&  $this->authService->checkAutorisation($this->userName,$routeName)) :?>
+				<div id="<?php echo $routeName ?>"></div>
+				<?php endif;?>
+				<?php endforeach; ?>
+
+
+		</nav>
+	</div>
+	<?php
+if (true == $this->displayLogWindow) :
+    
+    ?>
+	<div class="ui-layout-east">
+		<div class="log-control-bar ui-widget">
+			<input type="checkbox" id="complete-log" name="complete-log" /> <label
+				for="complete-log"> <?php  echo $this->translate("Complete logfile");?>
+	</label>
+
+		</div>
+		<div class="log-display-area"></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<?php 
+	endif;
+?>
+	<div class="ui-layout-west">
+
+		<div id="menu-entites">
+		
+			<?php
+if (is_array($this->dataTypes))
+    echo $this->hierarchicalMenu($this->dataTypes);
+?>
+		</div>
+	</div>
+
+    <?php
+    echo $this->content;
+    ?>
+            
+		<footer>
+		<p>&copy; <?php echo date('Y') ?> DSI AgroParisTech</p>
+	</footer>
+        <?php echo $this->inlineScript()?>
+    </body>
+</html>

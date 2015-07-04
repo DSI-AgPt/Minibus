@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<skipper version="3.2.2.1235" mvc="Zend Framework" orm="Doctrine2" name="Minibus" uuid="c18f9d55-afc1-48d9-86e7-3feacc67ea4e">
+  <module name="\Minibus" local-name="Minibus" namespace="\Minibus\Model\Entity" local-namespace="Minibus\Model\Entity" export-format="Doctrine2Php" export-path="../../src/Minibus/Model/Entity" uuid="6c891de7-63a5-4834-91c1-41a86c064004">
+    <entity name="\Minibus\Model\Entity\Configuration" local-name="Configuration" namespace="\Minibus\Model\Entity" uuid="ee8f829a-2ada-4cda-8dcb-66042c8d2d50">
+      <field name="id" type="integer" required="true" primary="true" uuid="ad48355d-506b-4f48-91ae-7062818edbc1">
+        <orm-attributes>
+          <attribute name="generator">
+            <attribute name="strategy">AUTO</attribute>
+          </attribute>
+        </orm-attributes>
+      </field>
+      <field name="first_year" type="integer" size="4" uuid="2d372c68-e06a-4a2a-ba85-f7662c8ef2d2"/>
+      <field name="last_year" type="integer" size="4" uuid="8e5a6b3c-9f55-4c03-b083-5854204cafb1"/>
+      <orm-attributes>
+        <attribute name="export-file-name">Configuration.php</attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="\Minibus\Model\Entity\Process" local-name="Process" namespace="\Minibus\Model\Entity" uuid="b4c9d3f7-b8e4-472f-8659-d142a9610ab8">
+      <field name="id" type="integer" size="11" required="true" unique="true" primary="true" auto-increment="true" uuid="d2a20f0a-1a2b-4a75-a562-42cb34eb8673"/>
+      <field name="mode" type="string" size="11" uuid="8df97ee7-ef35-45db-8f47-80950bdadbd8"/>
+      <field name="type" type="string" size="45" uuid="16df9fbd-8e99-446d-8564-6ec38f3e18bc"/>
+      <field name="endpoint" type="string" size="45" uuid="51431928-7567-46e7-9986-200fc95dd8da"/>
+      <field name="annee" type="integer" size="4" default="0" uuid="0b7b89a3-c72a-4c1f-abfd-71b2baf4aed1"/>
+      <field name="cron" type="string" size="15" uuid="d3c6e93f-878a-47f5-8bdf-5180e63a4249"/>
+      <field name="active" type="boolean" default="false" required="true" uuid="1e7881a2-9190-4346-939b-95eca6668efe"/>
+      <field name="shedule" type="boolean" default="false" required="true" uuid="758159b2-7da5-478a-9b49-184e81a9cd1a"/>
+      <field name="nextExecution" type="datetime" uuid="fa6322f6-b06d-4ae3-8d39-b8505718e468"/>
+      <field name="priority" type="smallint" uuid="f2e81da9-52de-48cb-9b1f-2ef5d9890c3f"/>
+      <field name="logLevel" type="string" size="24" uuid="4a4f5935-54ba-4e20-9382-86a39598e370"/>
+      <field name="nextExecutionParameters" type="json_array" uuid="54baca79-4b47-4007-80e7-606e80bed2c2"/>
+      <field name="running" type="boolean" default="false" required="true" uuid="80b2a278-8b38-44cc-91b3-84e2a9e55c33"/>
+      <field name="alive" type="boolean" default="false" required="true" uuid="e0e4d7ad-6390-4a0d-a1e6-1717adfe319e"/>
+      <field name="interrupted" type="boolean" default="false" required="true" uuid="fb347a53-2554-4813-9e30-f786ff2980ed"/>
+    </entity>
+    <entity name="\Minibus\Model\Entity\Execution" local-name="Execution" namespace="\Minibus\Model\Entity" uuid="adf146c4-65ae-4691-97e3-26322e1a3739">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="d226ab82-d705-4b2e-bfbe-978526ce95cc"/>
+      <field name="startDate" type="datetime" required="true" uuid="6ab70ac5-cf62-4f5b-b4cb-359022f2f91b"/>
+      <field name="state" type="string" size="45" default="not running" required="true" uuid="3fd06a35-d22b-47a4-8fb3-5beb69fabb0a"/>
+      <field name="information" type="text" default="no information" required="true" uuid="d552675b-7e04-4089-bd61-2a05ed737124"/>
+      <field name="logidentifier" type="string" size="13" required="true" uuid="c923af00-36f4-48f3-af2c-191cc66b4f76"/>
+      <field name="process_id" type="integer" size="11" uuid="823b8f1d-0154-400f-8c57-28c6d45f4be8"/>
+      <field name="pid" type="integer" required="true" uuid="2e437dd0-08d7-420b-8491-e1a3277d9aed"/>
+    </entity>
+    <association from="\Minibus\Model\Entity\Execution" to="\Minibus\Model\Entity\Process" caption="Process Execution" owner-alias="executions" inverse-alias="process" many-owner="true" many-inverse="false" uuid="c50e1467-55e1-4998-aea6-cf11d52ff165">
+      <association-field from="process_id" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <entity name="\Minibus\Model\Entity\Trace" local-name="Trace" namespace="\Minibus\Model\Entity" uuid="2569fa0d-1514-4a98-8f37-cac61f517fe3">
+      <field name="id_data" type="string" size="25" required="true" unique="true" primary="true" uuid="54e83748-3cb9-48b8-8f39-3f934e0f5dab"/>
+      <field name="hash" type="string" size="255" uuid="0c0e7c8b-b03f-4571-8d1d-e156c09b8889"/>
+      <field name="process_id" type="integer" size="11" uuid="fbc77827-a964-4419-9d1f-1fa1411a6057"/>
+      <orm-attributes>
+        <attribute name="repository-class">Minibus\Model\Repository\TraceRepository</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\Minibus\Model\Entity\Trace" to="\Minibus\Model\Entity\Process" caption="Process Trace" inverse-alias="process" many-owner="true" many-inverse="false" uuid="e919fc1d-5f0c-4db2-8603-df4934ca3f14">
+      <association-field from="process_id" to="id"/>
+    </association>
+    <entity name="\Minibus\Model\Entity\Alert" local-name="Alert" namespace="\Minibus\Model\Entity" uuid="2e4aaf63-a8c1-4339-bc13-9ef2431c310c">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="de9ef822-3000-4147-9955-82e45df4553d"/>
+      <field name="date" type="datetime" required="true" uuid="b74dcfb5-26c7-47a7-bc75-835891a6ca03"/>
+      <field name="level" type="string" required="true" uuid="a05a326b-b24a-4e23-a17d-34f25f80122b">
+        <orm-attributes>
+          <attribute name="column-definition">ENUM('WARNING', 'ERROR','ALERT')</attribute>
+        </orm-attributes>
+      </field>
+      <field name="message" type="string" uuid="ca745e1c-5455-4d88-90b6-425a9f4a5e79"/>
+      <field name="execution_id" type="integer" required="true" uuid="2da8acd9-0103-4827-b11c-69f06d978173"/>
+      <field name="idobject" type="string" uuid="d9b1e572-498a-4d53-a83b-cce0b95eadf6"/>
+      <orm-attributes>
+        <attribute name="repository-class">Minibus\Model\Repository\AlertRepository</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\Minibus\Model\Entity\Alert" to="\Minibus\Model\Entity\Execution" inverse-alias="execution" many-owner="true" many-inverse="false" parent-required="true" uuid="cd9b51d3-6ada-49f0-a7ae-818c9e4c8151">
+      <association-field from="execution_id" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <orm-attributes>
+      <attribute name="file-suffix">without-suffix</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <association uuid="c50e1467-55e1-4998-aea6-cf11d52ff165" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="cd9b51d3-6ada-49f0-a7ae-818c9e4c8151" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="e919fc1d-5f0c-4db2-8603-df4934ca3f14" caption1-position-x="-11" caption1-position-y="23" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <entity uuid="2569fa0d-1514-4a98-8f37-cac61f517fe3" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="123" position-y="450" size-x="0" size-x2="119" size-y="0" size-y2="59"/>
+    <entity uuid="2e4aaf63-a8c1-4339-bc13-9ef2431c310c" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="262" position-y="536" size-x="0" size-x2="110" size-y="0" size-y2="87"/>
+    <entity uuid="adf146c4-65ae-4691-97e3-26322e1a3739" bg-color="4294967295" hdr-color="4292006610" position-x="431" position-y="410" size-x="0" size-x2="119" size-y="0" size-y2="115"/>
+    <entity uuid="b4c9d3f7-b8e4-472f-8659-d142a9610ab8" bg-color="4294967295" hdr-color="4292006610" position-x="237" position-y="131" size-x="0" size-x2="177" size-y="0" size-y2="213"/>
+    <entity uuid="ee8f829a-2ada-4cda-8dcb-66042c8d2d50" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="196" position-y="40" size-x="0" size-x2="136" size-y="0" size-y2="59"/>
+    <module uuid="6c891de7-63a5-4834-91c1-41a86c064004" bg-color="#FDEBEF" position-x="50" position-y="50" size-x="0" size-x2="761" size-y="0" size-y2="3646"/>
+    <project uuid="c18f9d55-afc1-48d9-86e7-3feacc67ea4e" size-x="0" size-x2="3323" size-y="0" size-y2="4082"/>
+  </visual-data>
+</skipper>

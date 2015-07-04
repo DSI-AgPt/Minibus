@@ -23,6 +23,7 @@ class ExecutionController extends AbstractRestfulController
     {
         set_time_limit(0);
         ignore_user_abort(true);
+        //TODO magical value
         ini_set('memory_limit', '1800M');
         $verbose = $this->params()->fromQuery('verbose', false);
         $verbose = ($verbose !== false);

@@ -14,7 +14,7 @@ class ExecutionConsoleController extends AbstractActionController
     public function executeAction()
     {
         set_time_limit(0);
-        ignore_user_abort(true);
+        // TODO magical value
         ini_set('memory_limit', '1800M');
         $verbose = true;
         $responseContent = array();

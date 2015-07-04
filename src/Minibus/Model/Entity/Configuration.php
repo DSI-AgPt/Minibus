@@ -3,12 +3,11 @@
 namespace Minibus\Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Zend\Form\Annotation;
-// TODO move it
-// http://stackoverflow.com/questions/20454426/how-to-make-doctrine-and-zf2-form-annotations-work-together
+
 use Doctrine\Common\Annotations\AnnotationRegistry;
-$pathToZF2Library = __DIR__ . '/../../../../../../vendor/zendframework/zendframework/library/';
-AnnotationRegistry::registerAutoloadNamespace ( 'Zend\Form\Annotation', $pathToZF2Library );
+
 
 /**
  * @ORM\Entity

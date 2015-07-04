@@ -10,6 +10,11 @@
  * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
  * credentials from accidentally being committed into version control.
  */
+ 
+ // http://stackoverflow.com/questions/20454426/how-to-make-doctrine-and-zf2-form-annotations-work-together
+$pathToZF2Library = __DIR__ . '/../../vendor/zendframework/zendframework/library/';
+AnnotationRegistry::registerAutoloadNamespace ( 'Zend\Form\Annotation', $pathToZF2Library );
+
 return array (
 		'doctrine' => array (
 				'connection' => array (

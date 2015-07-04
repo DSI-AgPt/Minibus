@@ -8,6 +8,7 @@ use Zend\Log\Logger;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Mvc\MvcEvent;
+use Zend\Console\Request as ConsoleResquest;
 
 /**
  *
@@ -18,7 +19,7 @@ use Zend\Mvc\MvcEvent;
 class ZfcUserRedirectionListener implements ServiceLocatorAwareInterface, ListenerAggregateInterface
 {
     
-    use\Minibus\Util\Traits\ServiceLocatorAwareTrait;
+    use \Minibus\Util\Traits\ServiceLocatorAwareTrait;
 
     public function attach(EventManagerInterface $events)
     {
@@ -35,6 +36,8 @@ class ZfcUserRedirectionListener implements ServiceLocatorAwareInterface, Listen
 
     public function checkAuthentication(MvcEvent $event)
     {
+        if ($event->getRequest() instanceof ConsoleResquest)
+            return;
         $routename = $event->getRouteMatch()->getMatchedRouteName();
         // TODO mettre en conf
         if ($routename == 'zfcuser/login' || $routename == 'execution')

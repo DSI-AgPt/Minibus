@@ -5,6 +5,7 @@ return array(
         'Minibus\Controller\ConfigurationRest' => 'Minibus\Controller\ConfigurationRestController',
         'Minibus\Controller\ProcessRest' => 'Minibus\Controller\ProcessRestController',
         'Minibus\Controller\ExecutionRest' => 'Minibus\Controller\ExecutionRestController',
+        'Minibus\Controller\ExecutionConsole' => 'Minibus\Controller\ExecutionConsoleController',
         'Minibus\Controller\LogRest' => 'Minibus\Controller\LogRestController',
         'Minibus\Controller\Execution' => 'Minibus\Controller\ExecutionController',
         'Minibus\Controller\DataRest' => 'Minibus\Controller\DataRestController',

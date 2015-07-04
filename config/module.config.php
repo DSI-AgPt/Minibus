@@ -48,8 +48,26 @@ return array(
     // Placeholder for console routes
     'console' => array(
         'router' => array(
-            'routes' => array()
+            'routes' => array(
+                'rest_process_force_execution' => array(
+                    'options' => array(
+                        'route' => 'execute <mode> <type> <endpoint> [<annee>]',
+                        'verb' => 'post',
+                        'defaults' => array(
+                            'controller' => 'Minibus\Controller\ExecutionConsole',
+                            'action' => 'execute'
+                        ),
+                        'constraints' => array(
+                            'mode' => '/[a-z_]+/',
+                            'type' => '/[a-z_]+/',
+                            'endpoint' => '/[a-z_]+/',
+                            'annee' => '/[0-9]+/'
+                        )
+                    )
+                )
+            )
         )
-    ),
+    )
+    ,
     'doctrine' => include 'doctrine-config.php'
 );

@@ -21,19 +21,16 @@ return array (
 				'connection' => array (
 						'orm_default' => array (
 								'params' => array (
-										'host' => '%HOST_MDM%',
-										'port' => '%PORT_MDM%',
-										'user' => '%USER_MDM%',
-										'password' => '%PASSWORD_MDM%',
-										'dbname' => '%DBNAME_MDM%',
+										'host' => '%MINIBUS_DB_HOST%',
+										'port' => '%MINIBUS_DB_PORT%',
+										'user' => '%MINIBUS_DB_USER%',
+										'password' => '%MINIBUS_DB_PASSWORD%',
+										'dbname' => '%MINIBUS_DB_DBNAME%',
 										'driver' => 'pdo_mysql' 
 								) 
 						) 
 				) 
 		) ,
-		'pgp' => array (
-				'passphrase' => '%PASSPHRASE_PGP_PCL%' 
-		),
 		'data-store-directory' => '%DATA_DIRECTORY%' ,
 		'process-log-directory' => '%LOGS_DIRECTORY%' ,
 		'number-of-executions-to-keep' => 5,

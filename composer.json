@@ -20,7 +20,7 @@
           }
     },       
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.4",
         "zendframework/zendframework": "2.3.*",
         "nitecon/zfcuser-ldap":"^1.1",
         "symfony/yaml": "^2.7",

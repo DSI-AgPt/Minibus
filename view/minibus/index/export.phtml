@@ -11,7 +11,7 @@ foreach ( $this->dataTypes as $key1 => $data ) :
 		<!-- 		Menu des années -->
 		<?php
 	if ($data ['annualize'] === true) {
-		echo $this->selectAcademicYear ( $key1, $this->translate ( "Academic year" ), $this->firstYear, $this->lastYear );
+		echo $this->selectYear ( $key1, $this->translate ( "Academic year" ), $this->firstYear, $this->lastYear );
 	}
 	
 	// Affichage des boîtes de contrôle

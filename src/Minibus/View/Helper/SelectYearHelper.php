@@ -4,7 +4,7 @@ namespace Minibus\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 
-class SelectAcademicYearHelper extends AbstractHelper {
+class SelectYearHelper extends AbstractHelper {
 	public function __invoke($key, $label, $minYear, $maxYear) {
 		$html = '<select class="year-select-menu" id="year-select-menu-' . $key . '">';
 		for($i = $minYear; $i <= $maxYear; $i ++) {

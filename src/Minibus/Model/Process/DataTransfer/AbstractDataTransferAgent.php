@@ -14,7 +14,7 @@ use Minibus\Model\Io\Sftp\SftpClient;
 abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, ServiceLocatorAwareInterface
 {
     
-    use\Minibus\Util\Traits\EntityManagerTrait;
+    use \Minibus\Util\Traits\EntityManagerTrait;
 
     const MODE_SYNC = "sync";
 
@@ -570,5 +570,26 @@ abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, 
     {
         $name = sprintf('/tmp/MDM_LOCK_%s.sem', $name);
         return $name;
+    }
+
+    /**
+     *
+     * @return \Zend\I18n\Translator\Translator
+     */
+    private function getTranslator()
+    {
+        return $this->getServiceLocator()->get('Translator');
+    }
+
+    /**
+     *
+     * @param string $message            
+     * @param string $textDomain            
+     * @param string $locale            
+     * @return string
+     */
+    protected function translate($message, $textDomain = 'default', $locale = null)
+    {
+        return $this->getTranslator()->translate($message, $textDomain, $locale);
     }
 }

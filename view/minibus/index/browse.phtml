@@ -7,7 +7,7 @@ foreach ( $this->dataTypes as $key1 => $data ) :
 		<h2><?php echo $this->translate("Consultation des données")?> : <?php echo $this->escapeHtml($data ['label']) ?> </h2>
 		<?php
 	if ($data ['annualize'] === true) {
-		echo $this->selectYear ( $key1, $this->translate ( "Academic year" ), $this->firstYear, $this->lastYear );
+		echo $this->selectYear ( $key1, $this->translate ( "Year" ), $this->firstYear, $this->lastYear );
 	}
 	$browseConfiguration = $data ['configuration'] ['browse'] ['general'];
 	$control = $browseConfiguration ['control'];

@@ -12,7 +12,7 @@ class TransferAgent extends AbstractDataTransferAgent
         $this->getExecution()->setState(Execution::RUNNING_STATE);
         $this->getLogger()->warn($this->translate("Sorry, this process is not yet implemented."));
         sleep(1);
-        $this->getLogger()->info("Good bye.");
+        $this->getLogger()->info($this->translate("Good bye"));
         sleep(1);
         $this->setAlive(false);
         $this->getExecution()->setState(Execution::STOPPED_STATE);

@@ -15,9 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Execution
 {
 
-    const STOPPED_STATE = 'A l\'arrêt';
+    const STOPPED_STATE = 'Stopped';
 
-    const RUNNING_STATE = 'En cours';
+    const RUNNING_STATE = 'Running';
 
     const DEFAULT_INFORMATION = 'No information';
 

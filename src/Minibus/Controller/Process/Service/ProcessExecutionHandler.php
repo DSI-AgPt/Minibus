@@ -24,9 +24,9 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
      */
     private $verbose;
     
-    use\Minibus\Util\Traits\ServiceLocatorAwareTrait;
+    use \Minibus\Util\Traits\ServiceLocatorAwareTrait;
     
-    use\Minibus\Util\Traits\EntityManagerTrait;
+    use \Minibus\Util\Traits\EntityManagerTrait;
 
     /**
      *
@@ -53,7 +53,7 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
         // créer le thread
         if (! is_null($electedProcess) && $electedProcess instanceof Process) {
             $this->conditionalDisplay("########################################################################\r\n");
-            $this->conditionalDisplay("## Exécution du processus {$electedProcess->getId()}\r\n");
+            $this->conditionalDisplay("## " . $this->translate("Execution of process ") . " {$electedProcess->getId()}\r\n");
             $nextExecutionParameters = $electedProcess->getNextExecutionParameters();
             $electedProcess->setNextExecution(null);
             try {
@@ -93,7 +93,7 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
                     $dataTransferAgent->run();
             } catch (ProcessException $e1) {
                 
-                $dataTransferAgent->getLogger()->err("Le processus a levé une exception : " . $e1->getMessage());
+                $dataTransferAgent->getLogger()->err($this->translate("The process threw an exception ") . $e1->getMessage());
                 {
                     $dataTransferAgent->getLogger()->err($e1->getMessage());
                     $e1 = $e1->getPrevious();
@@ -103,10 +103,10 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
                 if ($dataTransferAgent instanceof DataTransferAgentInterface)
                     $dataTransferAgent->getExecution()->setState(Execution::STOPPED_STATE);
             } catch (\Exception $e2) {
-                $dataTransferAgent->getLogger()->err("Le processus a rencontré une erreur : " . $e2->getMessage() . " Classe " . $e2->getFile() . " Ligne " . $e2->getLine());
+                $dataTransferAgent->getLogger()->err($this->translate("The process encountered an error ") . " : " . $e2->getMessage() . " Classe " . $e2->getFile() . " Ligne " . $e2->getLine());
                 while (! is_null($e2->getPrevious())) {
                     $e2 = $e2->getPrevious();
-                    $dataTransferAgent->getLogger()->err($e2->getMessage() . " Classe " . $e2->getFile() . " Ligne " . $e2->getLine());
+                    $dataTransferAgent->getLogger()->err($e2->getMessage() . " " . $this->translate("Class") . " " . $e2->getFile() . " " . $this->translate("Line") . " " . $e2->getLine());
                 }
                 $electedProcess->setRunning(false);
                 $electedProcess->setAlive(false);
@@ -116,7 +116,7 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
             $this->getEntityManager()->flush();
         } else {
             $this->conditionalDisplay("########################################################################\r\n");
-            $this->conditionalDisplay("## Aucun processus élu\r\n");
+            $this->conditionalDisplay("## " . $this->translate("No process elected") . "\r\n");
         }
     }
 
@@ -168,21 +168,21 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
      */
     public function cleanProcesses()
     {
-        $this->conditionalDisplay("Nettoyage des processus\r\n");
+        $this->conditionalDisplay($this->translate("Cleaning process") . "\r\n");
         $activeProcesses = $this->getActiveProcessList();
         foreach ($activeProcesses as $activeProcess) {
             // les executions qui sont running mais n'ont plus de process running comme parent,
             // on les tue
             $this->conditionalDisplay("########################################################################\r\n");
-            $this->conditionalDisplay("##Processus actif " . $activeProcess->getExternalIdentifier() . "\r\n");
-            $this->conditionalDisplay(">> #Marqué comme " . ($activeProcess->getRunning() ? " running " : " not running ") . ".\r\n");
-            $this->conditionalDisplay(">> #Marqué comme " . ($activeProcess->getAlive() ? " alive " : " not alive ") . ".\r\n");
+            $this->conditionalDisplay("##" . $this->translate("Active process") . " : " . $activeProcess->getExternalIdentifier() . "\r\n");
+            $this->conditionalDisplay(">> #" . $this->translate("Currently marked as") . " : " . ($activeProcess->getRunning() ? " running " : " not running ") . ".\r\n");
+            $this->conditionalDisplay(">> #" . $this->translate("Currently marked as") . " : " . ($activeProcess->getAlive() ? " alive " : " not alive ") . ".\r\n");
             $executions = $activeProcess->getExecutions();
             foreach ($executions as $execution) {
-                $this->conditionalDisplay(" >> #Execution n°" . $execution->getId() . " à l'état " . $execution->getState() . ".\r\n");
+                $this->conditionalDisplay(" >> #" . $this->translate("Execution : ") . " " . $execution->getId() . " " . $this->translate("in the state") . " " . $execution->getState() . ".\r\n");
                 if ($activeProcess->getRunning() == false) {
                     if ($execution->getState() == Execution::RUNNING_STATE) {
-                        $this->conditionalDisplay(">> !! >> >> !! >> Arrêt forcé de l'exécution" . $execution->getId() . ".\r\n");
+                        $this->conditionalDisplay(">> !! >> >> !! >> " . $this->translate("Execution forced stop") . $execution->getId() . ".\r\n");
                         posix_kill($execution->getPid(), 9);
                         $execution->setInformation("Arrête forcé de l'exécution");
                         $execution->setState(Execution::STOPPED_STATE);
@@ -192,7 +192,7 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
             // Les processus qui ne sont pas alive, on met le running à false
             // et inversement
             if ($activeProcess->getRunning() != $activeProcess->getAlive()) {
-                $this->conditionalDisplay(">> #Changement de la marque running pour " . ($activeProcess->getAlive() ? " running " : " not running ") . ".\r\n");
+                $this->conditionalDisplay(">> #" . $this->translate("Running mark changed to") . " " . ($activeProcess->getAlive() ? " running " : " not running ") . ".\r\n");
                 $activeProcess->setRunning($activeProcess->getAlive());
             }
             
@@ -239,5 +239,26 @@ class ProcessExecutionHandler implements ServiceLocatorAwareInterface
     private function getSheduler()
     {
         return $this->getServiceLocator()->get('process-sheduler');
+    }
+
+    /**
+     *
+     * @return \Zend\I18n\Translator\Translator
+     */
+    private function getTranslator()
+    {
+        return $this->getServiceLocator()->get('Translator');
+    }
+
+    /**
+     *
+     * @param string $message            
+     * @param string $textDomain            
+     * @param string $locale            
+     * @return string
+     */
+    private function translate($message, $textDomain = 'default', $locale = null)
+    {
+        return $this->getTranslator()->translate($message, $textDomain, $locale);
     }
 }

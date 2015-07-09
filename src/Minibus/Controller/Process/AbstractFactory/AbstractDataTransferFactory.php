@@ -36,6 +36,7 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
         if ($dataTransferAgent instanceof \Minibus\Model\Process\DataTransfer\DataTransferAgentInterface) {
             
             try {
+                $this->injectServiceLocator($serviceLocator, $dataTransferAgent);
                 $this->injectConverter($serviceLocator, $dataTransferAgent, $identifiers);
                 $this->injectExecution($serviceLocator, $dataTransferAgent, $identifiers);
                 $this->injectLogger($serviceLocator, $dataTransferAgent);
@@ -137,6 +138,23 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
         $dataTransferAgent->setLocks($locks);
     }
 
+    /**
+     *
+     * @param ServiceLocatorInterface $serviceLocator            
+     * @param DataTransferAgentInterface $dataTransferAgent            
+     */
+    private function injectServiceLocator(ServiceLocatorInterface $serviceLocator, DataTransferAgentInterface $dataTransferAgent)
+    {
+        $dataTransferAgent->setServiceLocator($serviceLocator);
+    }
+
+    /**
+     *
+     * @param ServiceLocatorInterface $serviceLocator            
+     * @param DataTransferAgentInterface $dataTransferAgent            
+     * @param array $identifiers            
+     * @throws ProcessException
+     */
     private function injectConverter(ServiceLocatorInterface $serviceLocator, DataTransferAgentInterface $dataTransferAgent, array $identifiers)
     {
         $converterClassName = $this->getDatatypesHandler($serviceLocator)->getConverterClassName($identifiers['mode'], $identifiers['type'], $identifiers['endpoint']);

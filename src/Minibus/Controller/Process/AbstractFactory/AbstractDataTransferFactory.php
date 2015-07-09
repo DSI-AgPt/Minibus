@@ -260,7 +260,7 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
      */
     private function getTranslator(ServiceLocatorInterface $serviceLocator)
     {
-        return $this->getServiceLocator()->get('Translator');
+        return $serviceLocator->get('Translator');
     }
 
     /**

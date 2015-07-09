@@ -40,7 +40,7 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
                 $this->injectExecution($serviceLocator, $dataTransferAgent, $identifiers);
                 $this->injectLogger($serviceLocator, $dataTransferAgent);
                 if ($dataTransferAgent->hasConnection())
-                    $this->injectConnectionParameters($dataTransferAgent, $identifiers['endpoint'], new Config($serviceLocator->get('Config')));
+                    $this->injectConnectionParameters($serviceLocator, $dataTransferAgent, $identifiers['endpoint'], new Config($serviceLocator->get('Config')));
                 $this->injectAlertList($serviceLocator, $dataTransferAgent, $identifiers);
                 $this->injectLocks($serviceLocator, $dataTransferAgent, $identifiers);
             } catch (\Exception $e) {
@@ -100,12 +100,14 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
      * @param ServiceLocatorInterface $serviceLocator            
      * @param DataTransferAgentInterface $dataTransferAgent            
      * @param string $endpoint            
+     * @param Config $config            
+     * @throws ProcessException
      */
-    private function injectConnectionParameters(DataTransferAgentInterface $dataTransferAgent, $endpoint, Config $config)
+    private function injectConnectionParameters(ServiceLocatorInterface $serviceLocator, DataTransferAgentInterface $dataTransferAgent, $endpoint, Config $config)
     {
         $connectionParameters = $config->data_endpoints->$endpoint;
         if (is_null($connectionParameters))
-            throw new ProcessException("Aucune connexion ne semble configurée pour l'application $endpoint");
+            throw new ProcessException($this->translate($serviceLocator, "No connection seems configured for application") . " " . $endpoint);
         $dataTransferAgent->setConnectionParameters($connectionParameters);
     }
 
@@ -144,7 +146,7 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
             $reflectionClass = new \ReflectionClass($converterClassName);
             $converter = $reflectionClass->newInstance();
         } catch (\Exception $e) {
-            throw new ProcessException("Impossible de créer la classe " . $converterClassName . " pour la raison " . $e->getMessage(), $e->getCode(), $e);
+            throw new ProcessException($this->translate($serviceLocator, "Unable to create class") . " " . $converterClassName . " " . $this->translate($serviceLocator, "for the following reason") . " " . $e->getMessage(), $e->getCode(), $e);
         }
         if ($converter instanceof ServiceLocatorAwareInterface)
             $converter->setServiceLocator($serviceLocator);
@@ -184,7 +186,7 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
         $writer = new \Zend\Log\Writer\Stream($logFilePath);
         $logger = new \Zend\Log\Logger();
         $logger->addWriter($writer);
-        $logger->info("Injection du logger vers le fichier $logFilePath");
+        $logger->info($this->translate($serviceLocator, "Injection of logger to file") . " " . $logFilePath);
         $dataTransferAgent->setLogger($logger);
         $dataTransferAgent->setLogFilePath($logFilePath);
     }
@@ -201,7 +203,7 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
         
         $succes = fopen($logFilePath, 'w');
         if (! $succes)
-            throw new \Exception("Impossible de créer le fichier $logFilePath");
+            throw new \Exception($this->translate($serviceLocator, "Unable to create file") . " " . $logFilePath);
         return $logFilePath;
     }
 
@@ -249,5 +251,28 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
     public function getDatatypesHandler(ServiceLocatorInterface $serviceLocator)
     {
         return $serviceLocator->get("datatypes-handler");
+    }
+
+    /**
+     *
+     * @param ServiceLocatorInterface $serviceLocator            
+     * @return \Zend\I18n\Translator\Translator
+     */
+    private function getTranslator(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this->getServiceLocator()->get('Translator');
+    }
+
+    /**
+     *
+     * @param ServiceLocatorInterface $serviceLocator            
+     * @param string $message            
+     * @param string $textDomain            
+     * @param string $locale            
+     * @return string
+     */
+    private function translate(ServiceLocatorInterface $serviceLocator, $message, $textDomain = 'default', $locale = null)
+    {
+        return $this->getTranslator($serviceLocator)->translate($message, $textDomain, $locale);
     }
 }

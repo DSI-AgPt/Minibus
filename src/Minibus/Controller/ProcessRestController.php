@@ -106,8 +106,9 @@ class ProcessRestController extends AbstractRestfulController
         } else {
             $active = array_key_exists('active', $data) && $data['active'] === 'true';
             $process->setActive($active);
-            $process->setShedule($data['shedule'] === 'true' && $data['active'] === 'true');
-            $process->setCron($data['cron']);
+            $shedule = $data['shedule'] === 'true' && $data['active'] === 'true';
+            $process->setShedule($shedule);
+            $process->setCron($shedule ? $data['cron'] : null);
         }
         
         $processStateHandler->saveProcess($process);

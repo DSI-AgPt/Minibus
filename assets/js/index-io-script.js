@@ -35,20 +35,36 @@ IndexIo.prototype.buildControlScriptList = function() {
 }
 IndexIo.prototype.buildInterface = function() {
 	var that = this;
+
 	$(".year-select-menu").selectmenu({
 		width : 'auto',
 		change : function() {
+			that.rememberSelectedYear();
 			that.updateActiveDataArea();
+
 		}
 	});
-};
 
+};
+// TODO factorize
+IndexIo.prototype.rememberSelectedYear = function() {
+	var that = this;
+	var selectedDataType = this.$container.getSelectedDataType();
+	that.$yearControl = $("#year-select-menu-" + selectedDataType);
+	if (that.$yearControl.length == 0)
+		return;
+	$.cookie('selected-year', that.$yearControl.val());
+};
 IndexIo.prototype.updateActiveDataArea = function() {
 	var that = this;
 	if (!this.initializationIndex)
 		return;
 	var selectedDataType = this.$container.getSelectedDataType();
+	// TODO factorize
 	that.$yearControl = $("#year-select-menu-" + selectedDataType);
+	if ($.cookie('selected-year') && that.$yearControl.length > 0) {
+		that.$yearControl.val($.cookie('selected-year')).selectmenu('refresh');
+	}
 	var initialized = this.isAreaInitialized(selectedDataType);
 	$wrapper = $("div#" + this.mode + "-" + selectedDataType);
 	if (!initialized) {

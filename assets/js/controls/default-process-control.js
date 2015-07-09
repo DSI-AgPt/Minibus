@@ -45,6 +45,14 @@ DefaultProcessControl.prototype.initialize = function() {
 	}).click(function() {
 		that.forceProcessExecutionStop();
 	});
+	$(".clear-data-button", that.$wrapper).button({
+		icons : {
+			primary : 'ui-icon-list-clear'
+		},
+		text : true
+	}).click(function() {
+		that.askExecution('clear');
+	});
 	$('.frequency-control', that.$wrapper).each(function(i, e) {
 		$(e).cron({
 			onChange : function() {
@@ -233,7 +241,7 @@ DefaultProcessControl.prototype.forceProcessExecutionStop = function() {
 
 			});
 }
-DefaultProcessControl.prototype.askExecution = function($mode) {
+DefaultProcessControl.prototype.askExecution = function(executionMode) {
 	var that = this;
 	that.$container.enableControlBox(that.$wrapper, false);
 	var $form = that.$wrapper.find('form');
@@ -242,7 +250,7 @@ DefaultProcessControl.prototype.askExecution = function($mode) {
 	var endpoint = $form.find('input[name=endpoint]').val();
 	var annee = that.$container.getSelectedYear();
 	var data = {
-		'mode' : $mode
+		'mode' : executionMode
 	};
 	$
 			.ajax({

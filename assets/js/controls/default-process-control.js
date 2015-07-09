@@ -45,13 +45,31 @@ DefaultProcessControl.prototype.initialize = function() {
 	}).click(function() {
 		that.forceProcessExecutionStop();
 	});
+	that.clearConfirmationDialog = that.$wrapper.next('.confirm-clear-dialog');
+	that.clearConfirmationDialog.dialog({
+		autoOpen : false,
+		resizable : false,
+		height : 140,
+		modal : true,
+		buttons : {
+			Ok : function() {
+				$(this).dialog("close");
+				that.askExecution('clear');
+			},
+			Cancel : function() {
+				$(this).dialog("close");
+
+			}
+		}
+	});
 	$(".clear-data-button", that.$wrapper).button({
 		icons : {
 			primary : 'ui-icon-list-clear'
 		},
 		text : true
 	}).click(function() {
-		that.askExecution('clear');
+		that.clearConfirmationDialog.dialog("open");
+
 	});
 	$('.frequency-control', that.$wrapper).each(function(i, e) {
 		$(e).cron({

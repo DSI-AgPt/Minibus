@@ -99,4 +99,12 @@ echo $this->form()->closeTag();
 ?>
 	<?php echo $this->partial("helpers/partials/execution-list");?>
 </div>
-
+<?php if ($displayButton['clear']===true): ?>
+<div class="confirm-clear-dialog ui-helper-hidden"
+	title="<?php echo $this->translate("Clear all data ?") ?>">
+	<p>
+		<span class="ui-icon ui-icon-alert"
+			style="float: left; margin: 0 7px 20px 0;"></span><?php echo $this->translate("All data related to this process are going to be deleted. No recovery is possible.")?>
+	</p>
+</div>
+<?php endif; ?>

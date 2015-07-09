@@ -456,7 +456,7 @@ abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, 
     protected function getConverter()
     {
         if (is_null($this->converter))
-            throw new \Exception("No converter defined in configuration for datatransfer " . get_called_class());
+            throw new \Exception($this->translate("No converter defined in configuration for datatransfer ") . get_called_class());
         return $this->converter;
     }
 
@@ -468,7 +468,7 @@ abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, 
     public function setIdObjectsAlertList(array $idObjectsAlertList)
     {
         $this->idObjectsAlertList = $idObjectsAlertList;
-        self::logInfo("Liste des objets concernés par une alerte :" . "\r\n");
+        self::logInfo($this->translate("Objects subject to an alert") . " : \r\n");
         self::logInfo(print_r($idObjectsAlertList, true));
     }
 
@@ -544,11 +544,11 @@ abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, 
             return false;
         }
         foreach ($this->locks as $name => $mode) {
-            self::getLogger()->info("Tentative d'acquisition du verrou $name en mode " . ($mode == LOCK_EX ? 'exclusif' : 'partagé'));
+            self::getLogger()->info($this->translate("Trying to acquire the lock ") . $name . " " . $this->translate("in mode") . " : " . ($mode == LOCK_EX ? $this->translate('exclusive') : $this->translate('shared')));
             if (true === $this->lockFile($name, $mode))
-                self::getLogger()->info("Succès de l'acquisition du verrou $name en mode " . ($mode == LOCK_EX ? 'exclusif' : 'partagé'));
+                self::getLogger()->info($this->translate("Successfully acquired the lock ") . $name . " " . $this->translate("in mode") . " : " . ($mode == LOCK_EX ? $this->translate('exclusive') : $this->translate('shared')));
             else {
-                $message = "Impossible d'obtenir le verrou $name en mode " . ($mode == LOCK_EX ? 'exclusif' : 'partagé');
+                $message = $this->translate("Unable to acquire the lock ") . $name . " " . $this->translate("in mode") . " : " . ($mode == LOCK_EX ? $this->translate('exclusive') : $this->translate('shared'));
                 self::getLogger()->err($message);
                 self::alertError($message);
                 $this->setAlive(false);

@@ -26,7 +26,11 @@ return array (
 										'user' => '%MINIBUS_DB_USER%',
 										'password' => '%MINIBUS_DB_PASSWORD%',
 										'dbname' => '%MINIBUS_DB_DBNAME%',
-										'driver' => 'pdo_mysql' 
+										'driver' => 'pdo_mysql' ,
+										'charset' => 'utf8',
+                						'driverOptions' => array(
+                        						1002=>'SET NAMES utf8'
+                						)
 								) 
 						) 
 				) 

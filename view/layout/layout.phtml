@@ -80,8 +80,8 @@ if (! isset($this->action)) {
 		<nav id="main-menu">
 			<ul>
 				<li class="title title-text"><?php echo $this->translate("Data exchange plateform") ?></li>
-				<li class="title"><img alt="AgroParisTech"
-					src="<?php echo $this->basePath()?>/img/logo.png"></li>
+				<li class="title organization-logo"><img alt="Organization"
+					src="<?php echo $this->basePath()?>/img/organization-logo.png"></li>
 					<?php
     $tabs = array(
         'browse' => $this->translate('Browse'),
@@ -97,7 +97,8 @@ if (! isset($this->action)) {
 				<?php endif;?>
 				<?php endforeach; ?>
 
-
+        <li class="title minibus-logo"><img alt="Minibus"
+					src="<?php echo $this->basePath()?>/img/minibus-logo.png"></li>
 			</ul>
 <?php
 foreach ($tabs as $routeName => $label) :
@@ -136,6 +137,8 @@ if (true == $this->displayLogWindow) :
 	
 	
 	
+
+
 <?php 
 	endif;
 ?>

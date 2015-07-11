@@ -8,10 +8,18 @@ html body.ui-layout-container {
 				display: none ! important;
 			}
 
-			ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.title {
-				color: #777777;
-				font-size: 16px;
-				margin: 0 11px;
+			ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
+				li.title {
+					color: #777777;
+					font-size: 16px;
+					margin: 0 11px;
+				}
+
+				li.title.minibus-logo {
+					float: right;
+					margin-right: 30px;
+					padding-top: 3px;
+				}
 			}
 
 			ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all > li.title.title-text {
@@ -143,6 +151,7 @@ html body.ui-layout-container {
 					div span.bouton-force-execution-stop.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-primary span.ui-button-icon-primary.ui-icon.ui-icon-list-stop {
 						background-image: url("../img/modernuiicon/appbar.sign.stop.svg");
 					}
+
 					div span.clear-data-button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-primary span.ui-button-icon-primary.ui-icon.ui-icon-list-clear {
 						background-image: url("../img/modernuiicon/appbar.star.delete.svg");
 					}

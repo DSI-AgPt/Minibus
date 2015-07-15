@@ -119,7 +119,7 @@ ExecutionList.prototype.refreshList = function(data, forceSelectionOfNewLine) {
 }
 ExecutionList.prototype.launchPoll = function($selectedRow) {
 	var that = this;
-	if ($selectedRow.attr("data-state") == "En cours") {
+	if ($selectedRow.attr("data-state") == "Running") {
 		that.timeout = setTimeout(function() {
 			that.refresh()
 		}, 1000);
@@ -148,7 +148,7 @@ ExecutionList.prototype.selectRow = function($selectedRow) {
 	var that = this;
 	$('html').find('tr.ligne-execution').removeClass("ui-state-highlight");
 	this.selectedExecutionId = $selectedRow.attr("data-id");
-	$running = $selectedRow.attr("data-state") == "En cours";
+	$running = $selectedRow.attr("data-state") == "Running";
 	$selectedRow.addClass("ui-state-highlight");
 	$selectedRow.find('td').removeClass("ui-state-hover");
 

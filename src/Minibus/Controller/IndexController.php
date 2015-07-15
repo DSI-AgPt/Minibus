@@ -79,7 +79,7 @@ class IndexController extends AbstractActionController {
 		$configurationHandler = $this->getConfigurationHandler ();
 		$configuration = $configurationHandler->getConfiguration ();
 		$dataTransferInserts = new \ArrayObject ();
-		$actionEvent = new Event ( 'minibus-acquisition-action-hook', this );
+		$actionEvent = new Event ( 'minibus-acquisition-action-hook', $this );
 		$response = $this->getEventManager ()->trigger ( $actionEvent );
 		$params = $actionEvent->getParams ();
 		foreach ( $params as $key => $value ) {
@@ -105,7 +105,7 @@ class IndexController extends AbstractActionController {
 		$view->setVariable ( 'dataTypes', $this->getDataTypesHandler ()->getLastLevelOfdataTypes () );
 		$configurationHandler = $this->getConfigurationHandler ();
 		$configuration = $configurationHandler->getConfiguration ();
-		$actionEvent = new Event ( 'minibus-export-action-hook', this );
+		$actionEvent = new Event ( 'minibus-export-action-hook', $this );
 		$response = $this->getEventManager ()->trigger ( $actionEvent );
 		$params = $actionEvent->getParams ();
 		foreach ( $params as $key => $value ) {

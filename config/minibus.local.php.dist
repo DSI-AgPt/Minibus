@@ -11,34 +11,72 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
  * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
  * credentials from accidentally being committed into version control.
  */
- 
- // http://stackoverflow.com/questions/20454426/how-to-make-doctrine-and-zf2-form-annotations-work-together
+// http://stackoverflow.com/questions/20454426/how-to-make-doctrine-and-zf2-form-annotations-work-together
 $pathToZF2Library = __DIR__ . '/../../vendor/zendframework/zendframework/library/';
-AnnotationRegistry::registerAutoloadNamespace ( 'Zend\Form\Annotation', $pathToZF2Library );
-
-return array (
-		'doctrine' => array (
-				'connection' => array (
-						'orm_default' => array (
-								'params' => array (
-										'host' => '%MINIBUS_DB_HOST%',
-										'port' => '%MINIBUS_DB_PORT%',
-										'user' => '%MINIBUS_DB_USER%',
-										'password' => '%MINIBUS_DB_PASSWORD%',
-										'dbname' => '%MINIBUS_DB_DBNAME%',
-										'driver' => 'pdo_mysql' ,
-										'charset' => 'utf8',
-                						'driverOptions' => array(
-                        						1002=>'SET NAMES utf8'
-                						)
-								) 
-						) 
-				) 
-		) ,
-		'data-store-directory' => '%DATA_DIRECTORY%' ,
-		'process-log-directory' => '%LOGS_DIRECTORY%' ,
-		'number-of-executions-to-keep' => 5,
-		'auth' => array (
-				'filePath' => __DIR__ . "/users.txt" 
-		),
+AnnotationRegistry::registerAutoloadNamespace('Zend\Form\Annotation', $pathToZF2Library);
+$dbParams = array(
+    'host' => '%MINIBUS_DB_HOST%',
+    'port' => '%MINIBUS_DB_PORT%',
+    'user' => '%MINIBUS_DB_USER%',
+    'password' => '%MINIBUS_DB_PASSWORD%',
+    'dbname' => '%MINIBUS_DB_DBNAME%',
+    'driver' => 'pdo_mysql',
+    'mapping_types' => "enum: string",
+    'charset' => 'utf8',
+    'driverOptions' => array(
+        1002 => 'SET NAMES utf8'
+    )
+);
+return array(
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'params' => $dbParams
+            )
+        ),
+        'driver' => array(
+            // defines an annotation driver with two paths, and names it `my_annotation_driver`
+            'minibus_annotation_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(
+                    __DIR__ . '/../vendor/dsi-agpt/minibus/src/Minibus/Model/Entity',
+                    __DIR__ . '/../../../module/Jobs/src/Jobs/Model/Entity'
+                )
+            ),
+            
+            // default metadata driver, aggregates all other drivers into a single one.
+            // Override `orm_default` only if you know what you're doing
+            'orm_default' => array(
+                'drivers' => array(
+                    // register `my_annotation_driver` for any entity under namespace `My\Namespace`
+                    'Minibus' => 'minibus_annotation_driver',
+                    'Jobs' => 'minibus_annotation_driver'
+                )
+            )
+        )
+    ),
+    'enable_zfc_user' => true,
+    'enable_rest_client_ssl_verification' => false,
+    'data-store-directory' => '/home/minibus',
+    'process-log-directory' => '/home/minibus/processlog',
+    'number-of-executions-to-keep' => 5,
+    'auth' => array(
+        'filePath' => __DIR__ . "/users.txt"
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'Zend\Db\Adapter\Adapter' => function ($sm) use($dbParams)
+            {
+                return new Zend\Db\Adapter\Adapter(array(
+                    'driver' => 'pdo',
+                    'dsn' => 'mysql:host=' . $dbParams['host'] . ';port=' . $dbParams['port'] . ';dbname=' . $dbParams['dbname'] . ';user=' . $dbParams['user'] . ';password=' . $dbParams['password'],
+                    'database' => $dbParams['dbname'],
+                    'username' => $dbParams['user'],
+                    'password' => $dbParams['password'],
+                    'hostname' => $dbParams['host']
+                ));
+            }
+        )
+    )
 );

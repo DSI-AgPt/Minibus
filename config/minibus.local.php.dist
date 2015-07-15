@@ -56,7 +56,6 @@ return array(
             )
         )
     ),
-    'enable_zfc_user' => true,
     'enable_rest_client_ssl_verification' => false,
     'data-store-directory' => '/home/minibus',
     'process-log-directory' => '/home/minibus/processlog',

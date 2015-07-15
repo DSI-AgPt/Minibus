@@ -25,7 +25,7 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
 
     const SFTP_TYPE = 'sftp';
     
-    use \Minibus\Util\Traits\ServiceLocatorAwareTrait;
+    use\Minibus\Util\Traits\ServiceLocatorAwareTrait;
 
     /**
      *
@@ -59,14 +59,11 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
                 $concreteConnexion = $this->getJsonRestClient();
                 if (! $connexionParameters->offsetExists("url"))
                     throw new ProcessException("Les paramètres du client rest sont incomplets : manque l'url");
-                if (! $connexionParameters->offsetExists("key"))
-                    throw new ProcessException("Les paramètres du client rest sont incomplets : manque la clé d'authentification");
                 try {
                     $concreteConnexion->setBaseUrl($connexionParameters->url);
                 } catch (\Exception $e) {
                     throw new ProcessException("Url du web service non valable :" . $connexionParameters->url . " " . $e->getMessage());
                 }
-                $concreteConnexion->setKey($connexionParameters->key);
                 break;
             case self::SFTP_TYPE:
                 $concreteConnexion = $this->getSftpClient();

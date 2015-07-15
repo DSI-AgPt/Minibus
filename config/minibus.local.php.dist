@@ -57,8 +57,8 @@ return array(
         )
     ),
     'enable_rest_client_ssl_verification' => false,
-    'data-store-directory' => '/home/minibus',
-    'process-log-directory' => '/home/minibus/processlog',
+   	'data-store-directory' => '%DATA_DIRECTORY%' ,
+	'process-log-directory' => '%LOGS_DIRECTORY%' ,
     'number-of-executions-to-keep' => 5,
     'auth' => array(
         'filePath' => __DIR__ . "/users.txt"

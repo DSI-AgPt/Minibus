@@ -35,7 +35,7 @@ if (! isset($this->action)) {
             ->prependStylesheet($this->basePath() . '/freeow/style/freeow/freeow.css')
             ->prependStylesheet($this->basePath() . '/jquery-file-upload/css/jquery.fileupload.css')
             ->prependStylesheet($this->basePath() . '/css/layout-default-latest.css')
-            ->prependStylesheet( 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/'.$this->jqueryUiTheme.'/jquery-ui.css');
+            ->prependStylesheet('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/' . $this->jqueryUiTheme . '/jquery-ui.css');
         ?>
 
         <!-- scripts -->
@@ -80,8 +80,7 @@ if (! isset($this->action)) {
 		<nav id="main-menu">
 			<ul>
 				<li class="title title-text"><?php echo $this->translate("Data exchange plateform") ?></li>
-				<li class="title organization-logo"><img alt="Organization"
-					src="<?php echo $this->basePath()?>/img/organization-logo.png"></li>
+				
 					<?php
     $tabs = array(
         'browse' => $this->translate('Browse'),
@@ -96,8 +95,9 @@ if (! isset($this->action)) {
 				<li><a href="<?php echo "#".$routeName ?>"><?php echo $label ?></a></li>
 				<?php endif;?>
 				<?php endforeach; ?>
-
-        <li class="title minibus-logo"><img alt="Minibus"
+<li class="title organization-logo"><img alt="Organization"
+					src="<?php echo $this->basePath()?>/img/organization-logo.png"></li>
+				<li class="title minibus-logo"><img alt="Minibus"
 					src="<?php echo $this->basePath()?>/img/minibus-logo.png"></li>
 			</ul>
 <?php
@@ -137,6 +137,7 @@ if (true == $this->displayLogWindow) :
 	
 	
 	
+
 
 
 <?php 

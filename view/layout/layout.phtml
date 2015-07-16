@@ -6,6 +6,7 @@ if (! isset($this->action)) {
 $locale = $this->plugin('translate')
     ->getTranslator()
     ->getLocale();
+$cronI18nExt = (($locale == 'fr_FR') ? 'fr_FR' : 'en_US');
 ?>
 <?php echo $this->doctype(); ?>
 
@@ -31,7 +32,7 @@ $locale = $this->plugin('translate')
             'href' => $this->basePath() . '/img/favicon.ico'
         ))
             ->prependStylesheet($this->basePath() . '/css/style.css')
-            ->prependStylesheet($this->basePath() . '/js/cron/jquery-cron' . ($locale == 'fr_FR' ? '' : '-min') . '.css')
+            ->prependStylesheet($this->basePath() . '/js/cron/jquery-cron.css')
             ->prependStylesheet($this->basePath() . '/js/gentleSelect/jquery-gentleSelect.css')
             ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/css/jquery.dataTables.css')
             ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/integration/dataTables.jqueryui.css')
@@ -63,7 +64,7 @@ $locale = $this->plugin('translate')
             ->prependFile($this->basePath() . '/js/details/jquery.details.js')
             ->prependFile($this->basePath() . '/jquery-ui-1.11.2.custom/jquery-ui.min.js')
             ->prependFile($this->basePath() . '/js/jquery.cookie.js')
-            ->prependFile($this->basePath() . '/js/cron/jquery-cron.js')
+            ->prependFile($this->basePath() . '/js/cron/jquery-cron.' . $cronI18nExt . '.js')
             ->prependFile($this->basePath() . '/js/gentleSelect/jquery-gentleSelect.js')
             ->prependFile($this->basePath() . '/js/jquery.min.js')
             ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array(
@@ -150,6 +151,8 @@ if (true == $this->displayLogWindow) :
 	
 	
 	
+
+
 
 
 

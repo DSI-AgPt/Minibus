@@ -290,7 +290,9 @@ DefaultProcessControl.prototype.askExecution = function(executionMode) {
 										function(data) {
 											$details = that.$wrapper
 													.find("details");
-											if (!$details.is('[open]'))
+											if (!$details.is('[open]')
+													&& !$details
+															.hasClass("open"))
 												$details.find('summary')
 														.trigger('click');
 										})

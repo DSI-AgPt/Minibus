@@ -48,7 +48,8 @@ echo $this->formCheckbox($this->form->get('shedule'));
 ?>
 		<label for="cron-activation-control"><?php echo $this->translate("Schedule") ?></label>
 	<div class="frequency-control"></div>
-
+	<?php if(!empty($this->processDescription))?>
+<p class="ui-widget process-description-container"><?php echo $this->processDescription;?> </p>
 	<div>
 
 
@@ -97,6 +98,7 @@ if ($this->form->get('mode')->getValue() == 'acquisition') :
 	<?php
 echo $this->form()->closeTag();
 ?>
+
 	<?php echo $this->partial("helpers/partials/execution-list");?>
 </div>
 <?php if ($displayButton['clear']===true): ?>

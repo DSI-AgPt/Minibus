@@ -63,7 +63,7 @@ Index.prototype.buildLayout = function() {
 			togglerLength_closed : "100%",
 			size : 500
 		},
-		applyDemoStyles : true
+		applyDemoStyles : false
 	});
 }
 Index.prototype.getSelectedDataType = function() {

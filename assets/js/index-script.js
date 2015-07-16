@@ -12,8 +12,6 @@ function Index() {
 	this.currentPageHandler.initialize();
 
 }
-// TODO magical value
-Index.prototype.DEFAULT_SELECTED_DATA_TYPE = 'etudiants';
 Index.prototype.getActionName = function() {
 	var actionName = $("input#action-name").val();
 	if (actionName == 'index')
@@ -69,7 +67,7 @@ Index.prototype.buildLayout = function() {
 Index.prototype.getSelectedDataType = function() {
 	if ($.cookie('selected-data-type'))
 		return $.cookie('selected-data-type');
-	return this.DEFAULT_SELECTED_DATA_TYPE;
+	return $("input#default-selected-data-type").val();
 };
 Index.prototype.saveSelectedDataType = function(type) {
 	$.cookie('selected-data-type', type);

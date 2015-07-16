@@ -40,7 +40,7 @@ class ZfcUserRedirectionListener implements ServiceLocatorAwareInterface, Listen
             return;
         $routename = $event->getRouteMatch()->getMatchedRouteName();
         // TODO mettre en conf
-        if ($routename == 'zfcuser/login' || $routename == 'execution')
+        if ($routename == 'zfcuser/login' || $routename == 'zfcuser/logout' || $routename == 'execution')
             return;
         
         $zfcUser = $this->getServiceLocator()->get('zfcuser_auth_service');

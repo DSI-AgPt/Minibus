@@ -9,7 +9,7 @@ if (! isset($this->action)) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-        <?php echo $this->headTitle($this->translate('Data exchange plateform'))->setSeparator(' - ')->setAutoEscape(false)?>
+        <?php echo $this->headTitle($this->translate('Data exchange platform'))->setSeparator(' - ')->setAutoEscape(false)?>
 
         <?php
         
@@ -35,7 +35,7 @@ if (! isset($this->action)) {
             ->prependStylesheet($this->basePath() . '/freeow/style/freeow/freeow.css')
             ->prependStylesheet($this->basePath() . '/jquery-file-upload/css/jquery.fileupload.css')
             ->prependStylesheet($this->basePath() . '/css/layout-default-latest.css')
-            ->prependStylesheet($this->basePath() . '/jquery-ui-1.11.2.custom/jquery-ui.css');
+            ->prependStylesheet( 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/'.$this->jqueryUiTheme.'/jquery-ui.css');
         ?>
 
         <!-- scripts -->

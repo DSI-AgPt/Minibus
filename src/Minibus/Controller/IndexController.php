@@ -47,6 +47,7 @@ class IndexController extends AbstractActionController {
 		$this->layout ()->setVariable ( 'userName', $userName );
 		$this->layout ()->setVariable ( 'action', $this->params ( 'action' ) );
 		$this->layout ()->setVariable ( 'authService', $this->getFileAuthService () );
+		$this->layout ()->setVariable ( 'jqueryUiTheme', $this->getJqueryUiTheme () );
 		$controller = $this->params ( 'controller' );
 		$controller = explode ( '\\', $controller );
 		$controller = array_pop ( $controller );
@@ -194,5 +195,15 @@ class IndexController extends AbstractActionController {
 	 */
 	private function getProcessHandler() {
 		return $this->getServiceLocator ()->get ( 'process-state-handler' );
+	}
+	
+	/**
+	 * 
+	 */
+	private function getJqueryUiTheme() {
+	    $config = $this->getServiceLocator ()->get ( 'Config' );
+		if (! array_key_exists ( 'jquery-ui-theme', $config ))
+			throw new \Exception ( "La configuration devrait contenir une entrée jquery-ui-theme" );
+		return $config ['jquery-ui-theme'];
 	}
 }

@@ -67,7 +67,7 @@ return array(
                 )
             )
         )
-    )
-    ,
-    'doctrine' => include 'doctrine-config.php'
+    ),
+    'doctrine' => include 'doctrine-config.php',
+    'jquery-ui-theme' => 'smoothness'
 );

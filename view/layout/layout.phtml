@@ -31,7 +31,7 @@ $locale = $this->plugin('translate')
             'href' => $this->basePath() . '/img/favicon.ico'
         ))
             ->prependStylesheet($this->basePath() . '/css/style.css')
-            ->prependStylesheet($this->basePath() . '/js/cron/jquery-cron' . ($locale = 'fr_FR' ? '' : '-min') . '.css')
+            ->prependStylesheet($this->basePath() . '/js/cron/jquery-cron' . ($locale == 'fr_FR' ? '' : '-min') . '.css')
             ->prependStylesheet($this->basePath() . '/js/gentleSelect/jquery-gentleSelect.css')
             ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/css/jquery.dataTables.css')
             ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/integration/dataTables.jqueryui.css')

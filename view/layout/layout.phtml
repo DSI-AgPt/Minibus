@@ -3,6 +3,9 @@ if (! isset($this->action)) {
     $this->action = 'login';
     $this->controller = 'user';
 }
+$locale = $this->plugin('translate')
+    ->getTranslator()
+    ->getLocale();
 ?>
 <?php echo $this->doctype(); ?>
 
@@ -20,13 +23,15 @@ if (! isset($this->action)) {
         <!-- styles -->
         <?php
         $this->jqueryUiTheme = is_null($this->jqueryUiTheme) ? 'smoothness' : $this->jqueryUiTheme;
+        // probleme with jquery cron i18n
+        // so minified version is not translated in french
         echo $this->headLink(array(
             'rel' => 'shortcut icon',
             'type' => 'image/vnd.microsoft.icon',
             'href' => $this->basePath() . '/img/favicon.ico'
         ))
             ->prependStylesheet($this->basePath() . '/css/style.css')
-            ->prependStylesheet($this->basePath() . '/js/cron/jquery-cron.css')
+            ->prependStylesheet($this->basePath() . '/js/cron/jquery-cron' . ($locale = 'fr_FR' ? '' : '-min') . '.css')
             ->prependStylesheet($this->basePath() . '/js/gentleSelect/jquery-gentleSelect.css')
             ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/css/jquery.dataTables.css')
             ->prependStylesheet($this->basePath() . '/js/DataTables-1.10.6/integration/dataTables.jqueryui.css')
@@ -145,6 +150,9 @@ if (true == $this->displayLogWindow) :
 	
 	
 	
+
+
+
 
 
 

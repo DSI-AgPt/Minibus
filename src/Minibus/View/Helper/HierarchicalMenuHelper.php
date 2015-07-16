@@ -23,7 +23,7 @@ class HierarchicalMenuHelper extends AbstractHelper
             $key = $keys[$i];
             $hasChildren = array_key_exists('children', $data[$key]);
             if (! $hasChildren && is_null($this->defaultSelectedDataType))
-                $this->defaultSelectedDataType = "item-$key";
+                $this->defaultSelectedDataType = "$key";
             $html .= ' <li id="item-';
             $html .= $key;
             $html .= '" ';

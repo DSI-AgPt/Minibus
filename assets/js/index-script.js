@@ -33,13 +33,14 @@ Index.prototype.updateActiveTab = function(activeTab) {
 }
 Index.prototype.buildJsTree = function() {
 	var that = this;
+	var selectedDataType = that.getSelectedDataType();
 	$("#menu-entites").on('changed.jstree', function(e, data) {
 		var selected = data.selected[0];
 		if (!selected.match(/^item-/))
 			return;
 		that.saveSelectedDataType(selected.replace("item-", ""));
 		that.currentPageHandler.updateActiveDataArea();
-	}).jstree().jstree('select_node', 'item-' + that.getSelectedDataType());
+	}).jstree().jstree('select_node', 'item-' + selectedDataType);
 }
 Index.prototype.buildLayout = function() {
 	$('body').layout({

@@ -8,9 +8,18 @@ function Index() {
 	this.buildJsTree();
 	$('body').show();
 	this.buildLayout();
+	this.initHeader();
 	this.initializeAlerts();
 	this.currentPageHandler.initialize();
 
+}
+Index.prototype.initHeader = function() {
+	$("#logout-btn").button({
+		icons : {
+			primary : 'ui-icon-logout'
+		},
+		text : false
+	});
 }
 Index.prototype.getActionName = function() {
 	var actionName = $("input#action-name").val();

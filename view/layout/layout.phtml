@@ -97,8 +97,13 @@ if (! isset($this->action)) {
 				<?php endforeach; ?>
 <li class="title organization-logo"><img alt="Organization"
 					src="<?php echo $this->basePath()?>/img/organization-logo.png"></li>
+				
+				
 				<li class="title minibus-logo"><img alt="Minibus"
 					src="<?php echo $this->basePath()?>/img/minibus-logo.png"></li>
+					<a
+						href="<?php echo $this->basePath()?>/user/logout" id="logout-btn">logout
+					</a>
 			</ul>
 <?php
 foreach ($tabs as $routeName => $label) :
@@ -137,6 +142,7 @@ if (true == $this->displayLogWindow) :
 	
 	
 	
+
 
 
 

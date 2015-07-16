@@ -6,7 +6,7 @@ function DefaultProcessControl($container, $wrapper, logDisplayer) {
 
 DefaultProcessControl.prototype.initialize = function() {
 	var that = this;
-	// empêcher les boucles de redirection
+	// prevent event loops
 	this.disableDataSend = true;
 
 	$("form", that.$wrapper).submit(function() {
@@ -100,7 +100,7 @@ DefaultProcessControl.prototype.addExecutionList = function() {
 		forceSelectedId = $alertRedirectionSelectExecution.val();
 		$alertRedirectionSelectExecution.remove();
 	}
-	that.executionList = new ExecutionList(this, this.$wrapper.find("details"),
+	that.executionList = new ExecutionList(that, that.$wrapper.find("details"),
 			mode, that.logDisplayer, forceSelectedId);
 
 };
@@ -286,6 +286,14 @@ DefaultProcessControl.prototype.askExecution = function(executionMode) {
 									type : "POST",
 									url : "/execution"
 								})
+								.done(
+										function(data) {
+											$details = that.$wrapper
+													.find("details");
+											if (!$details.is('[open]'))
+												$details.find('summary')
+														.trigger('click');
+										})
 								.error(
 										// TODO factoriser
 										function(data) {

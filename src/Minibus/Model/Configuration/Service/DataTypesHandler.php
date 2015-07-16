@@ -101,7 +101,7 @@ class DataTypesHandler implements ServiceLocatorAwareInterface
         
         switch ($mode) {
             case 'export':
-                $modeConfiguration = $typeConfiguration['cibles'];
+                $modeConfiguration = $typeConfiguration['targets'];
                 break;
             case 'acquisition':
                 $modeConfiguration = $typeConfiguration['sources'];
@@ -166,7 +166,7 @@ class DataTypesHandler implements ServiceLocatorAwareInterface
         $typeConfiguration = $lastLevel[$type]['configuration'];
         switch ($mode) {
             case 'export':
-                $modeConfiguration = $typeConfiguration['cibles'];
+                $modeConfiguration = $typeConfiguration['targets'];
                 break;
             case 'acquisition':
                 $modeConfiguration = $typeConfiguration['sources'];
@@ -192,7 +192,7 @@ class DataTypesHandler implements ServiceLocatorAwareInterface
         $typeConfiguration = $lastLevel[$type]['configuration'];
         switch ($mode) {
             case 'export':
-                $modeConfiguration = $typeConfiguration['cibles'];
+                $modeConfiguration = $typeConfiguration['targets'];
                 break;
             case 'acquisition':
                 $modeConfiguration = $typeConfiguration['sources'];

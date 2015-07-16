@@ -15,7 +15,7 @@ foreach ( $this->dataTypes as $key1 => $data ) :
 	}
 	
 	// Affichage des boîtes de contrôle
-	foreach ( $data ['configuration'] ['cibles'] as $key2 => $source ) :
+	foreach ( $data ['configuration'] ['targets'] as $key2 => $source ) :
 		$control = $source ['control'];
 		$this->form->setData ( array (
 				"type" => $key1,

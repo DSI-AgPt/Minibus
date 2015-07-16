@@ -134,19 +134,19 @@ class AlertDataHandler implements ServiceLocatorAwareInterface {
 	private static function extractEndPoindsFromDataTypes(&$type, $key) {
 		$result = array ();
 		$result ['sources'] = array ();
-		$result ['cibles'] = array ();
+		$result ['targets'] = array ();
 		$sources = array ();
-		$cibles = array ();
+		$targets = array ();
 		$configuration = $type ['configuration'];
 		if (array_key_exists ( 'sources', $configuration ))
 			$sources = $configuration ['sources'];
-		if (array_key_exists ( 'cibles', $configuration ))
-			$cibles = $configuration ['cibles'];
+		if (array_key_exists ( 'targets', $configuration ))
+			$targets = $configuration ['targets'];
 		foreach ( $sources as $key => $value ) {
 			$result ['sources'] [$key] = $value ['dataTransferAgent'];
 		}
-		foreach ( $cibles as $key => $value ) {
-			$result ['cibles'] [$value ['label']] = $value ['dataTransferAgent'];
+		foreach ( $targets as $key => $value ) {
+			$result ['targets'] [$value ['label']] = $value ['dataTransferAgent'];
 		}
 		$type = $result;
 	}

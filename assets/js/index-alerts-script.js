@@ -126,15 +126,15 @@ IndexAlerts.prototype.getAlertStructure = function(selectedDataType) {
 				$("#alerts-structure-imports").empty();
 				$("#alerts-structure-exports").empty();
 				var sources = data['sources'];
-				var cibles = data['cibles'];
+				var targets = data['targets'];
 				for ( var key in sources)
 					$("#alerts-structure-imports").append(
 							$(document.createElement('option')).text(key).attr(
 									"value", sources[key]));
-				for ( var key in cibles)
+				for ( var key in targets)
 					$("#alerts-structure-exports").append(
 							$(document.createElement('option')).text(key).attr(
-									"value", cibles[key]));
+									"value", targets[key]));
 				that.$selectProcess.multiselect("refresh").multiselect(
 						"checkAll");
 				that.refreshAlertsList();

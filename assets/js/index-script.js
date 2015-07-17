@@ -63,7 +63,8 @@ Index.prototype.buildLayout = function() {
 			fxName : "none",
 			spacing_closed : 8,
 			togglerLength_closed : "100%",
-			size : 68
+			spacing_open:    0 ,
+			size : 62
 		},
 		east : {
 			fxName : "none",

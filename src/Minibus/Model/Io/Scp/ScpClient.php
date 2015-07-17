@@ -5,13 +5,13 @@
  * @copyright Joachim Dornbusch - AgroParisTech - 2014,2015
  *
  */
-namespace Minibus\Model\Io\Sftp;
+namespace Minibus\Model\Io\Scp;
 
 use Zend\Log\Logger;
 use Zend\Config\Config;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
-class SftpClient implements ServiceLocatorAwareInterface
+class ScpClient implements ServiceLocatorAwareInterface
 {
     use\Minibus\Util\Traits\ServiceLocatorAwareTrait;
 

@@ -9,7 +9,7 @@ use Minibus\Controller\Process\Exception\ProcessException;
 use Minibus\Controller\Process\Service\Connection\EndpointConnectionBuilder;
 use Zend\Config\Config;
 use Minibus\Model\Process\Conversion\IConverter;
-use Minibus\Model\Io\Sftp\SftpClient;
+use Minibus\Model\Io\Scp\ScpClient;
 
 abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, ServiceLocatorAwareInterface
 {

@@ -37,7 +37,7 @@ return array(
         'hash-calculator' => 'Minibus\Model\Process\Service\Hash\HashCalculator',
         'zfc-user-redirection' => 'Minibus\Controller\Auth\Service\ZfcUserRedirectionListener',
         'file-auth-service' => 'Minibus\Controller\Auth\Service\FileAuthService',
-        'sftp_client' => 'Minibus\Model\Io\Sftp\SftpClient',
+        'scp_client' => 'Minibus\Model\Io\Scp\ScpClient',
         'pgp_decrypt' => 'Minibus\Model\Io\Crypt\PgpDecrypt'
     ),
     'aliases' => array(

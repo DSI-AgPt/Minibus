@@ -7,7 +7,6 @@ use Minibus\Model\Entity\Process;
 use Minibus\Controller\Exceptions\RestApiException;
 use Minibus\Controller\Process\Exception\ProcessException;
 use Minibus\Model\Process\DataTransfer\DataTransferAgentInterface;
-use Minibus\Model\Io\SftpClient;
 use Minibus\Model\Process\DataTransfer\EndPointConnection;
 
 /**
@@ -23,7 +22,7 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
 
     const WEB_SERVICE_TYPE = 'webservice';
 
-    const SFTP_TYPE = 'sftp';
+    const SCP_TYPE = 'scp';
     
     use\Minibus\Util\Traits\ServiceLocatorAwareTrait;
 
@@ -65,18 +64,18 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
                     throw new ProcessException("Url du web service non valable :" . $connexionParameters->url . " " . $e->getMessage());
                 }
                 break;
-            case self::SFTP_TYPE:
-                $concreteConnexion = $this->getSftpClient();
+            case self::SCP_TYPE:
+                $concreteConnexion = $this->getScpClient();
                 if (! $connexionParameters->offsetExists("host"))
-                    throw new ProcessException("Les paramètres du client sftp sont incomplets : manque le host");
+                    throw new ProcessException("Invalid parameters for scp client : missing host");
                 if (! $connexionParameters->offsetExists("port"))
-                    throw new ProcessException("Les paramètres du client sftp sont incomplets : manque le port");
+                    throw new ProcessException("Invalid parameters for scp client : missing port");
                 if (! $connexionParameters->offsetExists("username"))
-                    throw new ProcessException("Les paramètres du client sftp sont incomplets : manque username");
+                    throw new ProcessException("Invalid parameters for scp client : missing username");
                 if (! $connexionParameters->offsetExists("pubkeyfile"))
-                    throw new ProcessException("Les paramètres du client sftp sont incomplets : manque pubkeyfile");
+                    throw new ProcessException("Invalid parameters for scp client : missing pubkeyfile");
                 if (! $connexionParameters->offsetExists("privkeyfile"))
-                    throw new ProcessException("Les paramètres du client sftp sont incomplets : manque privkeyfile");
+                    throw new ProcessException("Invalid parameters for scp client : missing privkeyfile");
                 
                 $concreteConnexion->setConfig($connexionParameters);
                 
@@ -101,10 +100,10 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
 
     /**
      *
-     * @return \Minibus\Model\Io\Sftp\SftpClient
+     * @return \Minibus\Model\Io\Scp\ScpClient
      */
-    private function getSftpClient()
+    private function getScpClient()
     {
-        return $this->getServiceLocator()->get('sftp_client');
+        return $this->getServiceLocator()->get('scp_client');
     }
 }

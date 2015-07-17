@@ -5,7 +5,7 @@ use Minibus\Model\Entity\Execution;
 use Zend\Log\Logger;
 use Minibus\Controller\Process\Service\Connection\EndpointConnectionBuilder;
 use Zend\Config\Config;
-use Minibus\Model\Io\Sftp\SftpClient;
+use Minibus\Model\Io\Scp\ScpClient;
 use Minibus\Model\Process\Conversion\IConverter;
 use Minibus\Model\Io\Rest\Client;
 

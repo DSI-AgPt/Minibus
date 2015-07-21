@@ -280,6 +280,8 @@ abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, 
     protected function setAlive($bool)
     {
         $executionId = $this->getExecution()->getId();
+        $this->getLogger()->info("*****Execution {$executionId} : alive flag set to " . ($bool === true) ? 'true' : 'false');
+        
         $this->getEntityManager()->clear($this->getProcess());
         $this->getEntityManager()->clear($this->getExecution());
         $this->getEntityManager()->refresh($this->getProcess());

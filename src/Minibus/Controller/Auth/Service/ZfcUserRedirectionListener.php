@@ -19,7 +19,7 @@ use Zend\Console\Request as ConsoleResquest;
 class ZfcUserRedirectionListener implements ServiceLocatorAwareInterface, ListenerAggregateInterface
 {
     
-    use \Minibus\Util\Traits\ServiceLocatorAwareTrait;
+    use\Minibus\Util\Traits\ServiceLocatorAwareTrait;
 
     public function attach(EventManagerInterface $events)
     {
@@ -46,7 +46,7 @@ class ZfcUserRedirectionListener implements ServiceLocatorAwareInterface, Listen
         $zfcUser = $this->getServiceLocator()->get('zfcuser_auth_service');
         $config = $this->getServiceLocator()->get('Config');
         $authorized = false;
-        if ($zfcUser->hasidentity())
+        if ($zfcUser->hasIdentity())
             $authorized = $this->getFileAuthService()->checkAutorisation($zfcUser->getIdentity()
                 ->getUserName(), $routename);
         if (! $zfcUser->hasIdentity() || true !== $authorized) {

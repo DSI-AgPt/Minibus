@@ -220,8 +220,9 @@ class AbstractDataTransferFactory implements AbstractFactoryInterface
         $logFilePath = $this->getLoghandler($serviceLocator)->getLogPath($execution->getLogidentifier());
         
         $succes = fopen($logFilePath, 'w');
+        $succes=$succes && chmod($logFilePath, 0777);
         if (! $succes)
-            throw new \Exception($this->translate($serviceLocator, "Unable to create file") . " " . $logFilePath);
+            throw new \Exception($this->translate($serviceLocator, "Unable to create file with read/write permission") . " " . $logFilePath);
         return $logFilePath;
     }
 

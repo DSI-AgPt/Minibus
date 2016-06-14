@@ -27,7 +27,7 @@ class Alert
     private $level;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $message;
 
@@ -147,20 +147,20 @@ class Alert
     /**
      * Set level
      *
-     * @param string $level
+     * @param string $level            
      * @return Alert
      */
     public function setLevel($level)
     {
         $this->level = $level;
-
+        
         return $this;
     }
 
     /**
      * Get level
      *
-     * @return string 
+     * @return string
      */
     public function getLevel()
     {

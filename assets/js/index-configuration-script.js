@@ -74,10 +74,10 @@ IndexConfiguration.prototype.launchExecution = function(verbose) {
 		type : "POST",
 		url : "/execution" + query,
 	}).done(function(data) {
-		$(".log-display-area").text(data.responseText);
+		$(".log-display-area").text(data);
 		that.enableLaunchExecutorButton(true);
 	}).error(function(data) {
-		$(".log-display-area").text(data.responseText);
+		$(".log-display-area").text(data);
 		that.enableLaunchExecutorButton(true);
 	});
 }

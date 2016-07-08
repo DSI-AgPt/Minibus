@@ -36,6 +36,12 @@ class Client
 
     /**
      *
+     * @var string
+     */
+    private $host;
+
+    /**
+     *
      * @param HttpClient $httpClient            
      * @param string $enableRestClientSslVerification            
      * @param string $baseUrl            
@@ -72,6 +78,11 @@ class Client
     public function setKey($key)
     {
         $this->key = $key;
+    }
+
+    public function setHost($host)
+    {
+        $this->host = $host;
     }
 
     /**
@@ -126,6 +137,16 @@ class Client
             'Accept' => 'application/json',
             'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:37.0) Gecko/20100101 Firefox/37.0'
         ));
+        if (! empty($this->host)) {
+            $request->getHeaders()->addHeaders(array(
+                'Host' => $this->host
+            ));
+        }
+        if (! empty($this->key)) {
+            $request->getHeaders()->addHeaders(array(
+                'Authorization' => 'Bearer ' . $this->key
+            ));
+        }
         $request->setUri($url);
         $request->setMethod($method);
         if (is_null($data))

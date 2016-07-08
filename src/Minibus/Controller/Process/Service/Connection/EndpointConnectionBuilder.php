@@ -60,6 +60,12 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
                     throw new ProcessException("Les paramètres du client rest sont incomplets : manque l'url");
                 try {
                     $concreteConnexion->setBaseUrl($connexionParameters->url);
+                    if ($connexionParameters->offsetExists("host")) {
+                        $concreteConnexion->setHost($connexionParameters->host);
+                    }
+                    if ($connexionParameters->offsetExists("key")) {
+                        $concreteConnexion->setKey($connexionParameters->key);
+                    }
                 } catch (\Exception $e) {
                     throw new ProcessException("Url du web service non valable :" . $connexionParameters->url . " " . $e->getMessage());
                 }

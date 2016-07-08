@@ -279,9 +279,9 @@ abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, 
      */
     protected function setAlive($bool)
     {
-        $executionId = $this->getExecution()->getId();        
+        $executionId = $this->getExecution()->getId();
         $this->getEntityManager()->clear($this->getProcess());
-         $this->getEntityManager()->clear($this->getExecution());
+        $this->getEntityManager()->clear($this->getExecution());
         $this->getEntityManager()->refresh($this->getProcess());
         $this->setExecution($this->getEntityManager()
             ->getRepository('Minibus\Model\Entity\Execution')
@@ -591,5 +591,10 @@ abstract class AbstractDataTransferAgent implements DataTransferAgentInterface, 
     protected function translate($message, $textDomain = 'default', $locale = null)
     {
         return $this->getTranslator()->translate($message, $textDomain, $locale);
+    }
+
+    protected function encodeToUtf8($string)
+    {
+        return mb_convert_encoding($string, "UTF-8", mb_detect_encoding($string, "UTF-8, ISO-8859-1, ISO-8859-15", true));
     }
 }

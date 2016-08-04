@@ -27,6 +27,7 @@ class Trace
     private $hash;
 
     /**
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Minibus\Model\Entity\Process")
      * @ORM\JoinColumn(name="process_id", referencedColumnName="id")
      */

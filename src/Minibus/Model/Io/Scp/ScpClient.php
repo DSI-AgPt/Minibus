@@ -64,4 +64,17 @@ class ScpClient implements ServiceLocatorAwareInterface
             throw new \Exception("Veuillez vous connecter au serveur avant de demander un fichier");
         ssh2_scp_recv($this->session, $remoteFileName, $localFilename);
     }
+    
+       /**
+     *
+     * @param string $remoteFileName            
+     * @param string $localFilename            
+     * @throws \Exception
+     */
+    public function send($remoteFileName, $localFilename)
+    {
+        if (empty($this->session))
+            throw new \Exception("Veuillez vous connecter au serveur avant de déposer un fichier");
+        ssh2_scp_send($this->session, $localFilename,$remoteFileName);
+    }
 }

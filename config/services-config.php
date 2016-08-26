@@ -38,7 +38,8 @@ return array(
         'zfc-user-redirection' => 'Minibus\Controller\Auth\Service\ZfcUserRedirectionListener',
         'file-auth-service' => 'Minibus\Controller\Auth\Service\FileAuthService',
         'scp_client' => 'Minibus\Model\Io\Scp\ScpClient',
-        'pgp_decrypt' => 'Minibus\Model\Io\Crypt\PgpDecrypt'
+        'pgp_decrypt' => 'Minibus\Model\Io\Crypt\PgpDecrypt',
+        'pgp_encrypt' => 'Minibus\Model\Io\Crypt\PgpEncrypt'
     ),
     'aliases' => array(
         'translator' => 'MvcTranslator',

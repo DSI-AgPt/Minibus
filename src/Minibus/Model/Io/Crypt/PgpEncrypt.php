@@ -37,6 +37,6 @@ class PgpEncrypt implements ServiceLocatorAwareInterface {
         if (! file_exists ( $decryptedFilePath ))
             throw new \Exception ( "Le fichier $decryptedFilePath n'existe pas" );
         
-        return shell_exec ( "gpg --no-tty --lsign-key CS_applis_UPSay --recipient CS_applis_UPSay --output $encryptedFilePath -encrypt $decryptedFilePath" );
+        return shell_exec("gpg --recipient CS_applis_UPSay --output $encryptedFilePath --encrypt $decryptedFilePath");
     }
 }

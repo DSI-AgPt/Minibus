@@ -24,7 +24,7 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
 
     const SCP_TYPE = 'scp';
     
-    use\Minibus\Util\Traits\ServiceLocatorAwareTrait;
+    use \Minibus\Util\Traits\ServiceLocatorAwareTrait;
 
     /**
      *
@@ -42,14 +42,15 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
                     'dbname',
                     'host',
                     'user',
-                    'password'
+                    'password',
+                    'port'
                 );
                 foreach ($keys as $key) {
                     if (! $connexionParameters->offsetExists($key))
                         throw new ProcessException("Les paramètres de base de données sont incomplets : manque " . $key);
                 }
                 
-                $dsn = $connexionParameters->driver . ':dbname=' . $connexionParameters->dbname . ';host=' . $connexionParameters->host;
+                $dsn = $connexionParameters->driver . ':dbname=' . $connexionParameters->dbname . ';host=' . $connexionParameters->host . ';port=' . $connexionParameters->port;
                 $user = $connexionParameters->user;
                 $password = $connexionParameters->password;
                 $concreteConnexion = new \PDO($dsn, $user, $password);

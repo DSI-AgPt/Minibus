@@ -23,6 +23,8 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
     const WEB_SERVICE_TYPE = 'webservice';
 
     const SCP_TYPE = 'scp';
+
+    const FAKE_TYPE = 'fake';
     
     use \Minibus\Util\Traits\ServiceLocatorAwareTrait;
 
@@ -87,6 +89,9 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
                 $concreteConnexion->setConfig($connexionParameters);
                 
                 break;
+            case self::FAKE_TYPE:
+                $concreteConnexion = $this->getFakeConnection();
+                break;
             default:
                 throw new ProcessException("Le type de connexion $connexionType n'est pas connu.");
                 break;
@@ -112,5 +117,14 @@ class EndpointConnectionBuilder implements ServiceLocatorAwareInterface
     private function getScpClient()
     {
         return $this->getServiceLocator()->get('scp_client');
+    }
+
+    /**
+     *
+     * @return \stdClass
+     */
+    private function getFakeConnection()
+    {
+        return new \stdClass();
     }
 }
